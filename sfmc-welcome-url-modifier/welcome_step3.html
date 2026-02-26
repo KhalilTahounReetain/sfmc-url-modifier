@@ -1,0 +1,593 @@
+%%[
+var @journey_id, @step_id, @country, @lang, @attributesJSON
+set @journey_id = 'JID-WelcomeJourneyV2'
+set @step_id = 'STP-3'
+set @country = 'FR'
+set @lang = 'ALL' 
+set @attributesJSON = '["Titre_Step3_WC","WJC_Step3_VotreService","WJC_Step3_StudioImg","WJC_Step3_SCImg","WJ_Step3_AteliersImg","WJC_Step3_rencontreImg","LaCollection_step3"]' 
+]%%
+
+%%=ContentBlockByID("543829")=%%
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="fr" xml:lang="fr">
+<head>
+  <custom name="opencounter" type="tracking"/>
+<!--[if gte mso 9]>
+<xml xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings></xml>
+<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>On vous dit tout &#x1F48C;</title>
+<style type="text/css">span.MsoHyperlink{mso-style-priority:1;color:inherit}span.MsoHyperlinkFollowed{mso-style-priority:1;
+color:inherit}body{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;color:#000000;margin:0 auto}td{line-height:100%}
+img{outline:0;text-decoration:none}a img{border:none}u+* img+div{display:none}table td{border-collapse:collapse;mso-line-height-rule:exactly}
+table{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0}a{color:inherit;text-decoration:none;mso-line-height-rule:exactly}
+.appleLinks,.appleLinksWhite{text-decoration:none !important}a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;
+font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
+table[class^=ox] sup{font-size:.7em;vertical-align:baseline}sup{font-size:.8em;vertical-align:text-top;line-height:1;height:0;
+mso-text-raise:24%}div>u+* table{zoom:100%}.ms-outlook-linkify{color:inherit !important}
+@media screen and (min-width:451px) and (max-width:640px),screen and (min-device-width:451px) and (max-device-width:640px){.t_flnone{float:none !important}
+.t_w100p{width:100% !important}.t_flright{float:right !important}.t_w96p{width:96% !important}.t_pr0px{padding-right:0 !important}
+.t_pb5px{padding-bottom:5px !important}.t_w60p{width:60% !important}.t_w78p{width:78% !important}.t_fz15px{font-size:15px !important}
+.t_lh17px{line-height:17px !important}.t_w27p{width:27% !important}.t_pt15px{padding-top:15px !important}.t_pb20px{padding-bottom:20px !important}
+.t_bdr10pxsolidffffff{border-right:10px solid #ffffff !important}.t_bdl10pxsolidffffff{border-left:10px solid #ffffff !important}
+.t_w50p{width:50% !important}.t_flleft{float:left !important}.t_w85p{width:85% !important}.t_pb8px{padding-bottom:8px !important}
+.t_w87p{width:87% !important}.t_w89p{width:89% !important}.t_pt8px{padding-top:8px !important}.t_pb9px{padding-bottom:9px !important}
+.t_w97p{width:97% !important}.t_fz14px{font-size:14px !important}.t_pt0px{padding-top:0 !important}.t_lh18px{line-height:18px !important}
+.t_w57p{width:57% !important}.t_w95p{width:95% !important}.t_pb13px{padding-bottom:13px !important}.t_pt19px{padding-top:19px !important}
+.t_w86p{width:86% !important}.t_pb0px{padding-bottom:0 !important}.t_pt41px{padding-top:41px !important}.t_pb11px{padding-bottom:11px !important}
+.t_pt4px{padding-top:4px !important}.t_pl13px{padding-left:13px !important}.t_w61p{width:61% !important}.t_pb10px{padding-bottom:10px !important}
+.t_w82p{width:82% !important}.t_pl10px{padding-left:10px !important}.t_pt13px{padding-top:13px !important}.t_h15px{height:15px !important}
+.t_lh15px{line-height:15px !important}.t_pt14px{padding-top:14px !important}.t_h12px{height:12px !important}.t_fz12px{font-size:12px !important}
+.t_lh12px{line-height:12px !important}.t_w22d5p{width:22.5% !important}.t_w14p{width:14% !important}.t_pb6px{padding-bottom:6px !important}
+.t_w10p{width:10% !important}.t_w29p{width:29% !important}.t_h10px{height:10px !important}.t_fz10px{font-size:10px !important}
+.t_lh10px{line-height:10px !important}.t_w38p{width:38% !important}.t_w93p{width:93% !important}.t_w6p{width:6% !important}
+.t_v{display:block !important;font-size:inherit !important;max-height:none !important;max-width:none !important;overflow:visible !important}
+.t_dnone{display:none !important}
+}
+@media screen and (max-width:450px),screen and (max-device-width:450px){.m_flnone{float:none !important}.m_w100p{width:100% !important}
+.m_flright{float:right !important}.m_w93p{width:93% !important}.m_pt2px{padding-top:2px !important}.m_pr0px{padding-right:0 !important}
+.m_pb10px{padding-bottom:10px !important}.m_w60p{width:60% !important}.m_w66p{width:66% !important}.m_fz13px{font-size:13px !important}
+.m_pb0px{padding-bottom:0 !important}.m_lh15px{line-height:15px !important}.m_w32p{width:32% !important}.m_pt15px{padding-top:15px !important}
+.m_pb20px{padding-bottom:20px !important}.m_h28px{height:28px !important}.m_fz11px{font-size:11px !important}.m_lts-n1px{letter-spacing:1px !important}
+.m_lh28px{line-height:28px !important}.m_bdr4pxsolidffffff{border-right:4px solid #ffffff !important}.m_bdl4pxsolidffffff{border-left:4px solid #ffffff !important}
+.m_w50p{width:50% !important}.m_flleft{float:left !important}.m_pb5px{padding-bottom:5px !important}.m_pl1px{padding-left:1px !important}
+.m_w92p{width:92% !important}.m_w97p{width:97% !important}.m_pt5px{padding-top:5px !important}.m_pl2px{padding-left:2px !important}
+.m_fz10px{font-size:10px !important}.m_pt0px{padding-top:0 !important}.m_lh12px{line-height:12px !important}.m_w68p{width:68% !important}
+.m_pt10px{padding-top:10px !important}.m_w95p{width:95% !important}.m_pb16px{padding-bottom:16px !important}.m_pl0px{padding-left:0 !important}
+.m_w99p{width:99% !important}.m_pl3px{padding-left:3px !important}.m_pb8px{padding-bottom:8px !important}.m_pl5px{padding-left:5px !important}
+.m_w94p{width:94% !important}.m_pt13px{padding-top:13px !important}.m_w96p{width:96% !important}.m_pb11px{padding-bottom:11px !important}
+.m_w98p{width:98% !important}.m_w81p{width:81% !important}.m_w74p{width:74% !important}.m_pb17px{padding-bottom:17px !important}
+.m_w91p{width:91% !important}.m_h10px{height:10px !important}.m_lh10px{line-height:10px !important}.m_pt11px{padding-top:11px !important}
+.m_w22d5p{width:22.5% !important}.m_w25p{width:25% !important}.m_pr2px{padding-right:2px !important}.m_pb4px{padding-bottom:4px !important}
+.m_w10p{width:10% !important}.m_h8px{height:8px !important}.m_fz8px{font-size:8px !important}.m_lh8px{line-height:8px !important}
+.m_w52p{width:52% !important}.m_h25px{height:25px !important}.m_bdtlrs5px{border-top-left-radius:5px !important}.m_bdtrrs5px{border-top-right-radius:5px !important}
+.m_bdblrs5px{border-bottom-left-radius:5px !important}.m_bdbrrs5px{border-bottom-right-radius:5px !important}.m_lh25px{line-height:25px !important}
+.m_fz12px{font-size:12px !important}.m_w0p{width:0% !important}.m_fl{float:undefined !important}.m_w8p{width:8% !important}
+.m_v{display:block !important;font-size:inherit !important;max-height:none !important;max-width:none !important;overflow:visible !important}
+.m_dnone{display:none !important}
+}
+@media screen and (min-width:640px),(orientation:landscape) and (min-width:640px){.d_center{float:none !important;margin:auto !important}
+.d_left{float:left !important}.d_right{float:right !important}
+}a:focus-visible{transition:box-shadow .3s ease;outline:0;box-shadow:0 0 0 2px hsla(288,100%,50%,.8)}.d_w640px{mso-element-frame-width:640px !important;
+mso-element-wrap:no-wrap-beside !important;mso-element-left:center !important}td.d_fluidGhost .d_col{width:100% !important}</style>
+</head>
+<body style="background-color:#ffffff">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;margin-top:-1px" role="presentation">
+<tr class="t_dnone m_dnone" aria-hidden="true">
+<td height="1" style="height:1px;max-height:1px;font-size:1px;line-height:1px">
+<span style="display:block;width:640px;min-width:640px">&nbsp;</span>
+</td></tr><tr><td style="background-color:#ffffff">
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="576" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w96p m_flnone m_mauto m_w93p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:5px;padding-bottom:6px;text-align:center" class="t_pr0px t_pb5px m_pt2px m_pr0px m_pb10px">
+<a href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="576" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr">
+<img src="%%=v(@attr_Titre_Step3_WC_src)=%%" alt="" width="576" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="371" align="center" style="opacity:.3;margin:auto;clear:both" class="d_center t_w60p m_w60p" aria-hidden="true">
+<tr><td height="5" style="height:5px;font-size:5px;line-height:5px;vertical-align:bottom">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center" style="width:100%;clear:both">
+<tr><td style="border-top:1px solid #000000;height:2px;font-size:2px;line-height:2px">&nbsp;</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="518" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w78p m_flnone m_mauto m_w66p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#000000;text-align:center;font-size:17px;
+padding-top:25px;vertical-align:middle;line-height:20px"
+class="t_fz15px t_lh17px m_fz13px m_pb0px m_lh15px"> L&#x2019;art d&#x2019;offrir, de s&#x2019;inspirer, de ch&#xE9;rir vos bien-aim&#xE9;s ou de se rencontrer dans nos <a href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+style="color:#000000;text-decoration:underline">Adresses</a>&#x2026; Depuis le premier jour, vous &#xEA;tes au c&#x153;ur de S&#xE9;zane et de toutes nos attentions. </td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="544" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w78p m_flnone m_mauto m_w66p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#000000;text-align:center;font-size:17px;
+padding-top:3px;vertical-align:middle;line-height:20px"
+class="t_fz15px t_lh17px m_fz13px m_pb0px m_lh15px">
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="140" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w27p m_flnone m_mauto m_w32p" role="presentation">
+<tr><td style="padding-top:25px;padding-bottom:30px;height:35px" class="t_pt15px t_pb20px m_pt15px m_pb20px m_h28px">
+<!--[if mso]>
+<v:roundrect
+xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+href="https://www.sezane.com/fr/sezane-10-ans?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"
+style="v-text-anchor:middle;height:35px;width:140px"
+arcsize="0%" 
+stroke="f"
+fillcolor="#141414" fill="t">
+<w:anchorlock/>
+<center style="color:#ffffff;font-size:14px;font-family:Arial,Helvetica,sans-serif;height:35px;text-align:center;
+letter-spacing:2px">
+D&#xC9;COUVRIR
+</center>
+</v:roundrect>
+<![endif]-->
+<a style="mso-hide:all;display:inline-block;-webkit-text-size-adjust:none;text-decoration:none;width:100%" class="t_w100p m_w100p" href="https://www.sezane.com/fr/sezane-10-ans?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+title="https://www.sezane.com/fr/sezane-10-ans">
+<span style="background-color:#141414;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:center;
+text-transform:none;letter-spacing:2px;line-height:35px;mso-hide:all;display:block"
+class="m_fz11px m_lts-n1px m_lh28px">
+D&#xC9;COUVRIR</span>
+</a>
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<div style="display:block;overflow:hidden;mso-border-alt:none #ffffff 0" class="t_bdr10pxsolidffffff t_bdl10pxsolidffffff m_bdr4pxsolidffffff m_bdl4pxsolidffffff">
+<!--[if gte mso 9]><table cellpadding="0" cellspacing="0" border="0" width="640" style="border-collapse:collapse"><tr><td style="vertical-align:top;border-collapse:collapse"><![endif]-->
+<table cellpadding="0" cellspacing="0" border="0" width="320" align="left" class="d_left t_w50p t_flleft m_w50p m_flleft" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="281" align="left" class="d_left t_flleft t_w85p m_flleft m_w93p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-bottom:10px;text-align:center" class="t_pb8px m_pb5px m_pl1px">
+<a href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="281" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_1_sezane.jpg" alt="" width="281" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="294" align="left" style="clear:both" class="d_left t_w87p m_w92p" aria-hidden="true">
+<tr><td height="5" style="height:5px;font-size:5px;line-height:5px;vertical-align:bottom">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center" style="width:100%;clear:both">
+<tr><td style="border-top:1px solid #c7c7c7;height:2px;font-size:2px;line-height:2px">&nbsp;</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="275" align="left" class="d_left t_flleft t_w89p m_flleft m_w97p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:10px;padding-bottom:10px;text-align:center" class="t_pt8px t_pb9px m_pt5px m_pb5px m_pl2px">
+<a href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="275" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_01_sezane.jpg" alt="" width="275" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="288" align="left" class="d_left t_flleft t_w97p m_flleft m_w92p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#2a2a2a;text-align:left;text-transform:none;
+font-size:15px;padding-bottom:0;padding-left:0;vertical-align:middle;line-height:19px"
+class="t_fz14px t_pt0px t_lh18px m_fz10px m_pt0px m_pl2px m_lh12px"><span> Maille, Bijoux, Maroquinerie, sans oublier l&#x2019;<a href="https://www.sezane.com/fr/product/leau-sezane/incolore?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+style="color:#2a2a2a;text-decoration:underline">Eau S&#xE9;zane</a>&#x2026; L&#x2019;art d&#x2019;imaginer les plus beaux cadeaux et de les emballer joliment sur <a href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+style="color:#2a2a2a;text-decoration:underline">Sezane.com</a> et sur <a href="https://sezane.onelink.me/TCiW/3vk5owts?campaign=FR&adgroup=nl&creative=standard&fallback=https%3A%2F%2Fwww.sezane.com%2Ffr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"><span style="text-decoration:none !important;color:#2a2a2a;">l’</span><span style="color:#2a2a2a;text-decoration:underline">App</span></a>.<br/></td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="147" align="left" class="d_left t_flleft t_w57p m_flleft m_w68p" role="presentation">
+<tr><td style="padding-top:18px;height:35px" class="t_pt15px m_pt10px m_pb10px m_h28px">
+<!--[if mso]>
+<v:roundrect
+xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"
+style="v-text-anchor:middle;height:35px;width:147px"
+arcsize="0%" 
+stroke="f"
+fillcolor="#141414" fill="t">
+<w:anchorlock/>
+<center style="color:#ffffff;font-size:14px;font-family:Arial,Helvetica,sans-serif;height:35px;text-align:center;
+letter-spacing:2px">
+D&#xC9;COUVRIR
+</center>
+</v:roundrect>
+<![endif]-->
+<a style="mso-hide:all;display:inline-block;-webkit-text-size-adjust:none;text-decoration:none;width:100%" class="t_w100p m_w100p" href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+title="https://www.sezane.com/fr">
+<span style="background-color:#141414;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:center;
+text-transform:none;letter-spacing:2px;line-height:35px;mso-hide:all;display:block"
+class="m_fz11px m_lts-n1px m_lh28px">
+D&#xC9;COUVRIR</span>
+</a>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="310" align="left" class="d_left t_flleft t_w95p m_flleft m_w95p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:27px;padding-bottom:25px;text-align:center" class="t_pr0px t_pb13px m_pt10px m_pr0px m_pb16px m_pl0px">
+<a href="https://www.instagram.com/sezane/?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="310" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.instagram.com/sezane/">
+<img src="%%=v(@attr_WJC_Step3_StudioImg_src)=%%" alt="" width="310" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="291" align="left" class="d_left t_flleft t_w89p m_flleft m_w99p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:11px;padding-bottom:10px;padding-left:0;text-align:center" class="t_pt19px t_pb8px m_pb5px m_pl3px">
+<a href="https://www.sezane.com/fr/cartes-cadeaux?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="291" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr/cartes-cadeaux">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_3_sezane.jpg" alt="" width="291" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="294" align="left" style="clear:both" class="d_left t_w87p m_w92p" aria-hidden="true">
+<tr><td height="5" style="height:5px;font-size:5px;line-height:5px;vertical-align:bottom">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center" style="width:100%;clear:both">
+<tr><td style="border-top:1px solid #c7c7c7;height:2px;font-size:2px;line-height:2px">&nbsp;</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="275" align="left" class="d_left t_flleft t_w86p m_flleft m_w97p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:9px;padding-bottom:10px;padding-left:0;text-align:center" class="t_pt8px t_pb9px m_pt5px m_pb8px m_pl5px">
+<a href="https://www.sezane.com/fr/cartes-cadeaux?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="275" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr/cartes-cadeaux">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_03_sezane.jpg" alt="" width="275" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="291" align="left" class="d_left t_flleft t_w97p m_flleft m_w94p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#2a2a2a;text-align:left;text-transform:none;
+font-size:15px;padding-bottom:5px;padding-left:0;vertical-align:middle;line-height:19px"
+class="t_fz14px t_pt0px t_pb0px t_lh18px m_fz10px m_pt0px m_pl5px m_lh12px"> Laissez-leur le choix avec nos Cartes Cadeaux et <a href="https://www.sezane.com/fr/cartes-cadeaux?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+style="color:#2a2a2a;text-decoration:underline">E-Cartes Cadeaux</a> envoy&#xE9;es directement dans vos bo&#xEE;tes mails.<br/>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="147" align="left" class="d_left t_flleft t_w57p m_flleft m_w68p" role="presentation">
+<tr><td style="padding-top:15px;height:35px" class="m_pt13px m_pb10px m_h28px">
+<!--[if mso]>
+<v:roundrect
+xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+href="https://www.sezane.com/fr/cartes-cadeaux?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"
+style="v-text-anchor:middle;height:35px;width:147px"
+arcsize="0%" 
+stroke="f"
+fillcolor="#141414" fill="t">
+<w:anchorlock/>
+<center style="color:#ffffff;font-size:14px;font-family:Arial,Helvetica,sans-serif;height:35px;text-align:center;
+letter-spacing:2px">
+D&#xC9;COUVRIR
+</center>
+</v:roundrect>
+<![endif]-->
+<a style="mso-hide:all;display:inline-block;-webkit-text-size-adjust:none;text-decoration:none;width:100%" class="t_w100p m_w100p" href="https://www.sezane.com/fr/cartes-cadeaux?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+title="https://www.sezane.com/fr/cartes-cadeaux">
+<span style="background-color:#141414;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:center;
+text-transform:none;letter-spacing:2px;line-height:35px;mso-hide:all;display:block"
+class="m_fz11px m_lts-n1px m_lh28px">
+D&#xC9;COUVRIR</span>
+</a>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="310" align="left" class="d_left t_flleft t_w95p m_flleft m_w95p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:48px;padding-bottom:20px;text-align:center" class="t_pt41px t_pr0px m_pt15px m_pr0px m_pl0px">
+<a href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="310" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr/nos-adresses">
+<img src="%%=v(@attr_WJC_Step3_SCImg_src)=%%" alt="" width="310" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<!--[if gte mso 9]> </td><td style="vertical-align:top;border-collapse:collapse"><![endif]-->
+<table cellpadding="0" cellspacing="0" border="0" width="320" align="right" class="d_right t_w50p t_flright m_w50p m_flright" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="310" align="right" class="d_right t_flright t_w95p m_flright m_w96p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-bottom:15px;text-align:center" class="t_pr0px t_pb11px m_pr0px m_pb11px">
+<a href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="310" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr">
+<img src="%%=v(@attr_WJC_Step3_rencontreImg_src)=%%" alt="" width="310" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="294" align="left" class="d_left t_flleft t_w87p m_flleft m_w98p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-bottom:10px;padding-left:5px;text-align:center" class="t_pt4px t_pb8px m_pb5px m_pl2px">
+<a href="https://www.instagram.com/sezane/?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="289" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.instagram.com/sezane/">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_2_sezane.jpg" alt="" width="289" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="297" align="center" style="margin:auto;clear:both" class="d_center t_w87p m_w92p" aria-hidden="true">
+<tr><td height="5" style="height:5px;font-size:5px;line-height:5px;vertical-align:bottom">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center" style="width:100%;clear:both">
+<tr><td style="border-top:1px solid #c7c7c7;height:2px;font-size:2px;line-height:2px">&nbsp;</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="304" align="left" class="d_left t_flleft t_w86p m_flleft m_w97p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:9px;padding-bottom:8px;padding-left:10px;text-align:center" class="t_pt8px t_pb9px m_pt5px m_pl2px">
+<a href="https://www.instagram.com/sezane/?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="294" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.instagram.com/sezane/">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_02_sezane.jpg" alt="" width="294" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="304" align="left" class="d_left t_flleft t_w97p m_flleft m_w81p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#2a2a2a;text-align:left;text-transform:none;
+font-size:15px;padding-bottom:5px;padding-left:10px;vertical-align:middle;line-height:19px"
+class="t_fz14px t_pt0px t_pb0px t_pl13px t_lh18px m_fz10px m_pt0px m_pl5px m_lh12px"> Chaque jour, la plus belle photo #sezanelovers est s&#xE9;lectionn&#xE9;e pour remporter un bon 
+cadeau de 100&#x20AC;. Pour participer, suivez nous et partagez vos pi&#xE8;ces pr&#xE9;f&#xE9;r&#xE9;es sur Instagram <a href="https://www.instagram.com/sezane/?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+style="color:#2a2a2a;text-decoration:underline">@sezane</a>.<br/>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="147" align="left" class="d_left t_flleft t_w61p m_flleft m_w74p" role="presentation">
+<tr><td style="padding-top:13px;padding-left:10px;height:35px" class="t_pl13px m_pt10px m_pl5px m_h28px">
+<!--[if mso]>
+<v:roundrect
+xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"
+style="v-text-anchor:middle;height:35px;width:137px"
+arcsize="0%" 
+stroke="f"
+fillcolor="#141414" fill="t">
+<w:anchorlock/>
+<center style="color:#ffffff;font-size:14px;font-family:Arial,Helvetica,sans-serif;height:35px;text-align:center;
+letter-spacing:2px">
+D&#xC9;COUVRIR
+</center>
+</v:roundrect>
+<![endif]-->
+<a style="mso-hide:all;display:inline-block;-webkit-text-size-adjust:none;text-decoration:none;width:100%" class="t_w100p m_w100p" href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+title="https://www.sezane.com/fr">
+<span style="background-color:#141414;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:center;
+text-transform:none;letter-spacing:2px;line-height:35px;mso-hide:all;display:block"
+class="m_fz11px m_lts-n1px m_lh28px">
+D&#xC9;COUVRIR</span>
+</a>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="310" align="right" class="d_right t_flright t_w95p m_flright m_w96p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:20px;padding-bottom:14px;text-align:center" class="t_pr0px t_pb10px m_pt15px m_pr0px m_pb17px">
+<a href="https://www.sezane.com/fr/cartes-cadeaux?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="310" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr/cartes-cadeaux">
+<img src="%%=v(@attr_WJ_Step3_AteliersImg_src)=%%" alt="" width="310" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="265" align="left" class="d_left t_flleft t_w82p m_flleft m_w91p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-right:0;padding-bottom:10px;padding-left:7px;text-align:center" class="t_pb8px t_pl10px m_pb5px m_pl5px">
+<a href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="258" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr/nos-adresses">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/FR_4_sezane.jpg" alt="" width="258" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="294" align="center" style="opacity:.3;margin:auto;clear:both" class="d_center t_w87p m_w93p" aria-hidden="true">
+<tr><td height="5" style="height:5px;font-size:5px;line-height:5px;vertical-align:bottom">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center" style="width:100%;clear:both">
+<tr><td style="border-top:1px solid #2a2a2a;height:2px;font-size:2px;line-height:2px">&nbsp;</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="275" align="left" class="d_left t_flleft t_w89p m_flleft m_w97p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:10px;padding-bottom:10px;padding-left:10px;text-align:center" class="t_pt8px t_pb9px t_pl13px m_pt5px m_pb8px m_pl5px">
+<a href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="265" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr/nos-adresses">
+<img src="%%=v(@attr_WJC_Step3_VotreService_src)=%%" alt="" width="265" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="262" align="left" class="d_left t_flleft t_w96p m_flleft m_w95p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#2a2a2a;text-align:left;text-transform:none;
+font-size:15px;padding-bottom:0;padding-left:10px;vertical-align:middle;line-height:19px"
+class="t_fz14px t_pt0px t_pl13px t_lh18px m_fz10px m_pt0px m_pl5px m_lh12px"> Rendez-vous dans nos <a href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+style="color:#2a2a2a;text-decoration:underline">Appartements</a> pour d&#xE9;couvrir nos Collections en vrai, et profiter de notre service de Conciergerie pour recevoir, essayer, renvoyer 
+gratuitement vos commandes. </td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="147" align="left" class="d_left t_flleft t_w61p m_flleft m_w74p" role="presentation">
+<tr><td style="padding-top:15px;padding-left:10px;height:35px" class="t_pt13px t_pl13px m_pt10px m_pl5px m_h28px">
+<!--[if mso]>
+<v:roundrect
+xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"
+style="v-text-anchor:middle;height:35px;width:137px"
+arcsize="0%" 
+stroke="f"
+fillcolor="#141414" fill="t">
+<w:anchorlock/>
+<center style="color:#ffffff;font-size:14px;font-family:Arial,Helvetica,sans-serif;height:35px;text-align:center;
+letter-spacing:2px">
+D&#xC9;COUVRIR
+</center>
+</v:roundrect>
+<![endif]-->
+<a style="mso-hide:all;display:inline-block;-webkit-text-size-adjust:none;text-decoration:none;width:100%" class="t_w100p m_w100p" href="https://www.sezane.com/fr/nos-adresses?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+title="https://www.sezane.com/fr/nos-adresses">
+<span style="background-color:#141414;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:center;
+text-transform:none;letter-spacing:2px;line-height:35px;mso-hide:all;display:block"
+class="m_fz11px m_lts-n1px m_lh28px">
+D&#xC9;COUVRIR</span>
+</a>
+</td></tr></table>
+</td></tr><tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="320" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="20" style="height:20px;font-size:20px;line-height:20px" class="t_h15px t_fz15px t_lh15px m_h10px m_fz10px m_lh10px"> &nbsp; </td></tr></table>
+</td></tr></table>
+<!--[if gte mso 9]></td></tr></table><![endif]--></div>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="padding-top:0;padding-bottom:10px;text-align:center" class="t_pt14px m_pt11px m_pb8px">
+<a href="https://www.sezane.com/fr-fr" width="640" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr-fr">
+<img src="%%=v(@attr_LaCollection_step3_src)=%%" alt="" width="640" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_w640px d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="opacity:.3;margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="5" style="height:5px;font-size:5px;line-height:5px;vertical-align:bottom">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center" style="width:100%;clear:both">
+<tr><td style="border-top:1px solid #2a2a2a;height:2px;font-size:2px;line-height:2px">&nbsp;</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="15" style="height:15px;font-size:15px;line-height:15px" class="t_h12px t_fz12px t_lh12px m_h10px m_fz10px m_lh10px"> &nbsp; </td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="144" align="left" class="d_left t_w22d5p t_flleft m_w22d5p m_flleft" role="presentation">
+<tr><td>
+<span>&nbsp;</span>
+</td></tr></table>
+<!--[if gte mso 9]> </td><td style="vertical-align:top;border-collapse:collapse"><![endif]-->
+<table cellpadding="0" cellspacing="0" border="0" width="144" align="left" class="d_left t_w22d5p t_flleft m_w22d5p m_flleft" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="144" align="right" class="d_right t_flright t_w100p m_flright m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="20" align="right" class="d_right t_flright t_w14p m_flright m_w25p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="text-align:center" class="t_pb6px m_pr2px m_pb4px m_pl2px">
+<a href="https://www.instagram.com/sezane/" width="20" style="color:#000000;outline:0;border:none;margin:auto;display:block" class="t_w100p m_w100p" title="https://www.instagram.com/sezane/">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/7+08122023+SE+FR.png" alt="INSTAGRAM" width="20" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<!--[if gte mso 9]> </td><td style="vertical-align:top;border-collapse:collapse"><![endif]-->
+<table cellpadding="0" cellspacing="0" border="0" width="64" align="left" class="d_left t_w10p t_flleft m_w10p m_flleft" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="64" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="18" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w29p m_flnone m_mauto m_w50p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="text-align:center" class="m_pr2px m_pl2px">
+<a href="https://www.tiktok.com/@sezane?is_from_webapp=1&sender_device=pc" width="18" style="color:#000000;outline:0;border:none;margin:auto;display:block" class="t_w100p m_w100p" title="https://www.tiktok.com/@sezane?is_from_webapp=1&amp;sender_device=pc">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/8+08122023+SE+FR.png" alt="TIKTOK" width="18" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<!--[if gte mso 9]> </td><td style="vertical-align:top;border-collapse:collapse"><![endif]-->
+<table cellpadding="0" cellspacing="0" border="0" width="144" align="left" class="d_left t_w22d5p t_flleft m_w22d5p m_flleft" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="144" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="20" align="left" class="d_left t_flleft t_w14p m_flleft m_w25p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="text-align:center" class="m_pr2px m_pl2px">
+<a href="http://api.whatsapp.com/send/?phone=%2B33613742935&text&app_absent=0" width="20" style="color:#000000;outline:0;border:none;margin:auto;display:block" class="t_w100p m_w100p" 
+title="http://api.whatsapp.com/send/?phone=%2B33613742935&amp;text&amp;app_absent=0">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/9+08122023+SE+FR.png" alt="WHATSAPP" width="20" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+<!--[if gte mso 9]> </td><td style="vertical-align:top;border-collapse:collapse"><![endif]-->
+<table cellpadding="0" cellspacing="0" border="0" width="144" align="right" class="d_right t_w22d5p t_flright m_w22d5p m_flright" role="presentation">
+<tr><td>
+<span>&nbsp;</span>
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="15" style="height:15px;font-size:15px;line-height:15px" class="t_h10px t_fz10px t_lh10px m_h8px m_fz8px m_lh8px"> &nbsp; </td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="204" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w38p m_flnone m_mauto m_w52p" role="presentation">
+<tr><td style="height:32px" class="m_h25px">
+<!--[if mso]>
+<v:roundrect
+xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+href="https://sezane.onelink.me/TCiW/3vk5owts?campaign=FR&adgroup=nl&creative=standard&fallback=https%3A%2F%2Fwww.sezane.com%2Ffr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%"
+style="v-text-anchor:middle;height:34px;width:202px"
+arcsize="25%" 
+strokecolor="#141414" strokeweight="1px"
+fillcolor="" fill="t">
+<w:anchorlock/>
+<center style="color:#000;font-size:16px;font-family:Times New Roman,Times,Baskerville,Georgia,serif;height:34px;
+text-align:center;letter-spacing:1px">
+T&#xC9;L&#xC9;CHARGER L'APP
+</center>
+</v:roundrect>
+<![endif]-->
+<a style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;
+mso-hide:all;display:inline-block;-webkit-text-size-adjust:none;text-decoration:none;width:100%"
+class="t_w100p m_bdtlrs5px m_bdtrrs5px m_bdblrs5px m_bdbrrs5px m_w100p" href="https://sezane.onelink.me/TCiW/3vk5owts?campaign=FR&adgroup=nl&creative=standard&fallback=https%3A%2F%2Fwww.sezane.com%2Ffr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" 
+title="https://sezane.onelink.me/TCiW/3vk5owts?campaign=FR&amp;adgroup=nl&amp;creative=standard&amp;fallback=https%3A%2F%2Fwww.sezane.com%2Ffr">
+<span style="border-top:1px solid #141414;border-bottom:1px solid #141414;border-left:1px solid #141414;border-right:1px solid #141414;
+border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;
+color:#000;font-family:Times New Roman,Times,Baskerville,Georgia,serif;font-size:16px;text-align:center;
+text-transform:uppercase;letter-spacing:1px;line-height:32px;mso-hide:all;display:block"
+class="t_fz15px m_bdtlrs5px m_bdtrrs5px m_bdblrs5px m_bdbrrs5px m_fz13px m_lh25px">
+T&#xC9;L&#xC9;CHARGER L'APP</span>
+</a>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="10" style="height:10px;font-size:10px;line-height:10px" class="m_h8px m_fz8px m_lh8px"> &nbsp; </td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="486" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w93p m_flnone m_mauto m_w74p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#464646;text-align:center;text-transform:none;
+font-size:13px;vertical-align:middle;font-style:italic"
+class="m_fz12px">
+<a href="mailto:hello@sezane.com?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" style="color:#464646;text-decoration:underline">hello@sezane.com</a>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="10" style="height:10px;font-size:10px;line-height:10px" class="m_h8px m_fz8px m_lh8px"> &nbsp; </td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="416" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w78p m_flnone m_mauto m_w100p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="416" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w100p m_flnone m_mauto m_w98p" role="presentation">
+<tr><td style="font-family:Times New Roman,Times,Baskerville,Georgia,serif;color:#464646;text-align:center;font-size:13px;
+vertical-align:middle;font-style:italic"
+class="m_fz12px">
+  <a href="%%=CloudPagesURL(3606)=%%" style="color:#949494;line-height:16px;display:block;text-decoration:none;outline:none">
+Se d&#xE9;sinscrire
+</a>
+
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="10" style="height:10px;font-size:10px;line-height:10px"> &nbsp; </td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="32" align="center" style="margin:auto" class="d_center t_flnone t_mauto t_w6p m_flnone m_mauto m_w8p" role="presentation">
+<tr><td>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" class="d_center t_w100p m_w100p" role="presentation">
+<tr><td style="text-align:center">
+<a href="https://www.sezane.com/fr?sez_client_id=%%UUID%%&sez_subscriberkey=%%id_contact%%" width="32" style="color:#000000;outline:0;border:none;margin:auto;display:block" 
+class="t_w100p m_w100p" title="https://www.sezane.com/fr">
+<img src="https://image.news.sezane.com/lib/fe34117075640474711479/m/1/10+08122023+SE+FR.png" alt="" width="32" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:13px;display:block;border:none" class="t_w100p m_w100p"/></a>
+</td></tr></table>
+</td></tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center" style="margin:auto;clear:both" class="d_center t_w100p m_w100p" aria-hidden="true">
+<tr><td height="15" style="height:15px;font-size:15px;line-height:15px"> &nbsp; </td></tr></table>
+</td></tr></table>
+</td></tr></table></body>
+</html>
+
+

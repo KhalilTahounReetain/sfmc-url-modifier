@@ -1,0 +1,24 @@
+# Credentials - NE JAMAIS COMMITER
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Output files
+*.json
+!package.json
+
+# OS
+.DS_Store
+Thumbs.db

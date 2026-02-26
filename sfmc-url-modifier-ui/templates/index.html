@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC URL Modifier | REETAIN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --bg-warm: #f5f5f4;
+            --card: #ffffff;
+            --text: #1c1917;
+            --text-soft: #57534e;
+            --text-muted: #a8a29e;
+            --accent: #ea580c;
+            --accent-soft: #fed7aa;
+            --accent-hover: #c2410c;
+            --success: #16a34a;
+            --success-soft: #bbf7d0;
+            --warning: #ca8a04;
+            --warning-soft: #fef08a;
+            --danger: #dc2626;
+            --danger-soft: #fecaca;
+            --border: #e7e5e4;
+            --border-strong: #d6d3d1;
+            --sidebar-bg: #1c1917;
+            --sidebar-soft: #292524;
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout */
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .brand {
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 24px;
+        }
+
+        .brand img {
+            height: 36px;
+            margin-bottom: 12px;
+        }
+
+        .brand-title {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-subtitle {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        /* Connection */
+        .connection-box {
+            background: var(--sidebar-soft);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .connection-label {
+            color: #a8a29e;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-indicator.offline {
+            color: #fca5a5;
+        }
+
+        .status-indicator.online {
+            color: #86efac;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .status-indicator.online .status-dot {
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .btn-connect {
+            width: 100%;
+            padding: 10px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-connect:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Navigation */
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-title {
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            padding-left: 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: #a8a29e;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.05);
+            color: #e7e5e4;
+        }
+
+        .nav-item.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .nav-item i {
+            width: 18px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: rgba(255,255,255,0.15);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Pattern Config */
+        .config-box {
+            background: var(--sidebar-soft);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-top: auto;
+        }
+
+        .config-title {
+            color: #e7e5e4;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .config-title i {
+            color: var(--accent);
+        }
+
+        .pattern-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pattern-field label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .pattern-field input {
+            width: 100%;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .pattern-field input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .pattern-arrow {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            padding: 2px 0;
+        }
+
+        .pattern-preview {
+            margin-top: 12px;
+            padding: 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .pattern-preview .old {
+            color: #fca5a5;
+            text-decoration: line-through;
+        }
+
+        .pattern-preview .new {
+            color: #86efac;
+        }
+
+        .pattern-preview .arrow {
+            color: var(--text-muted);
+            margin: 0 6px;
+        }
+
+        /* Main */
+        .main {
+            flex: 1;
+            margin-left: 260px;
+            padding: 32px 40px;
+            max-width: 1200px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .greeting {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-soft);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-warm);
+            border-color: var(--border-strong);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: border-color 0.2s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-strong);
+        }
+
+        .stat-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .stat-card.orange .stat-icon { background: var(--accent-soft); color: var(--accent); }
+        .stat-card.green .stat-icon { background: var(--success-soft); color: var(--success); }
+        .stat-card.yellow .stat-icon { background: var(--warning-soft); color: var(--warning); }
+        .stat-card.red .stat-icon { background: var(--danger-soft); color: var(--danger); }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 6px;
+        }
+
+        /* Journey Card */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--accent);
+        }
+
+        /* Selection */
+        .selection-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background: var(--bg-warm);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .selection-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .checkbox-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-strong);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            background: white;
+        }
+
+        .checkbox.checked {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .checkbox.partial {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .checkbox i {
+            color: white;
+            font-size: 0.6rem;
+            display: none;
+        }
+
+        .checkbox.checked i,
+        .checkbox.partial i {
+            display: block;
+        }
+
+        .selection-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .selection-count strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.75rem;
+        }
+
+        /* Journey List */
+        .journey-list {
+            max-height: 420px;
+            overflow-y: auto;
+        }
+
+        .load-more-container {
+            padding: 16px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: var(--bg-warm);
+        }
+
+        .btn-load-more {
+            padding: 10px 24px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-load-more:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-load-more:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .load-more-info {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .cache-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7rem;
+            color: var(--success);
+            margin-left: 8px;
+        }
+
+        .cache-indicator i {
+            font-size: 0.65rem;
+        }
+
+        .journey-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 24px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+
+        .journey-item:hover {
+            background: var(--bg);
+        }
+
+        .journey-item.selected {
+            background: var(--accent-soft);
+        }
+
+        .journey-item:last-child {
+            border-bottom: none;
+        }
+
+        .journey-checkbox {
+            margin-right: 14px;
+        }
+
+        .journey-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .journey-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .journey-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-pill.running {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+        .status-pill.draft {
+            background: var(--warning-soft);
+            color: var(--warning);
+        }
+
+        .status-pill.stopped {
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .status-pill .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* Selected Panel */
+        .selected-panel {
+            margin-top: 24px;
+        }
+
+        .selected-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: var(--text);
+            border-radius: var(--radius) var(--radius) 0 0;
+            color: white;
+        }
+
+        .selected-header h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .selected-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+
+        .selected-list {
+            background: white;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--radius) var(--radius);
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .selected-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .selected-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: var(--bg-warm);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .remove-btn:hover {
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        /* Actions */
+        .action-panel {
+            margin-top: 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .action-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .action-title i {
+            color: var(--accent);
+        }
+
+        .action-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .action-btn {
+            padding: 20px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .action-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .action-btn i {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .action-btn.scan i { color: #0ea5e9; }
+        .action-btn.analyze i { color: var(--warning); }
+        .action-btn.execute i { color: var(--danger); }
+
+        .action-btn-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .action-btn-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .options-row {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+        }
+
+        .option-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .empty-state-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--bg-warm);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .empty-state p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(28, 25, 23, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 720px;
+            max-height: 85vh;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.2s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-warm);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            transition: all 0.15s;
+        }
+
+        .modal-close:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .modal-body {
+            padding: 24px;
+            max-height: 55vh;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Results */
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .result-stat {
+            background: var(--bg-warm);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+        }
+
+        .result-stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .result-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .result-section-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .url-tag {
+            display: inline-block;
+            background: var(--bg-warm);
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            margin: 3px;
+            word-break: break-all;
+        }
+
+        .activity-result {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .activity-result-header {
+            padding: 12px 16px;
+            background: var(--bg-warm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .activity-result-header:hover {
+            background: var(--border);
+        }
+
+        .activity-result-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-result-badge {
+            background: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .activity-result-body {
+            padding: 14px;
+            display: none;
+            background: var(--text);
+        }
+
+        .activity-result.expanded .activity-result-body {
+            display: block;
+        }
+
+        .change-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #a8a29e;
+            padding: 8px;
+            margin-bottom: 6px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        /* Loading */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(250, 250, 249, 0.9);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 16px;
+            font-weight: 500;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+            min-width: 280px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.success { border-left: 3px solid var(--success); }
+        .toast.error { border-left: 3px solid var(--danger); }
+        .toast.warning { border-left: 3px solid var(--warning); }
+
+        .toast i { font-size: 1rem; }
+        .toast.success i { color: var(--success); }
+        .toast.error i { color: var(--danger); }
+        .toast.warning i { color: var(--warning); }
+
+        .toast-message {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 24px; }
+            .stats { grid-template-columns: 1fr; }
+            .action-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="{{ url_for('static', filename='logoREETAIN.png') }}" alt="REETAIN">
+                <div class="brand-title">SFMC URL Modifier</div>
+                <div class="brand-subtitle">by Khalil</div>
+            </div>
+
+            <div class="connection-box">
+                <div class="connection-status">
+                    <span class="connection-label">Connexion</span>
+                    <span class="status-indicator offline" id="statusIndicator">
+                        <span class="status-dot"></span>
+                        <span id="statusText">Hors ligne</span>
+                    </span>
+                </div>
+                <button class="btn-connect" onclick="connect()">
+                    <i class="fas fa-plug"></i>
+                    Se connecter
+                </button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Filtrer par type</div>
+                <div class="nav-item active" onclick="setType('welcome', this)">
+                    <i class="fas fa-hand-wave"></i>
+                    <span>Welcome</span>
+                    <span class="nav-badge" id="welcomeCount">0</span>
+                </div>
+                <div class="nav-item" onclick="setType('transactional', this)">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Transactional</span>
+                    <span class="nav-badge" id="transacCount">0</span>
+                </div>
+                <div class="nav-item" onclick="setType('all', this)">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Toutes</span>
+                    <span class="nav-badge" id="allCount">0</span>
+                </div>
+            </div>
+
+            <div class="config-box">
+                <div class="config-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    Remplacement URL
+                </div>
+                <div class="pattern-row">
+                    <div class="pattern-field">
+                        <label>Chercher</label>
+                        <input type="text" id="oldPattern" value="fr" placeholder="fr">
+                    </div>
+                    <div class="pattern-arrow"><i class="fas fa-arrow-down"></i></div>
+                    <div class="pattern-field">
+                        <label>Remplacer par</label>
+                        <input type="text" id="newPattern" value="fr-fr" placeholder="fr-fr">
+                    </div>
+                </div>
+                <div class="pattern-preview">
+                    <span class="old">/<span id="previewOld">fr</span>/</span>
+                    <span class="arrow">→</span>
+                    <span class="new">/<span id="previewNew">fr-fr</span>/</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main">
+            <div class="header">
+                <div class="header-top">
+                    <div>
+                        <p class="greeting" id="greeting">Bonjour</p>
+                        <h1 class="page-title">Vos Journeys</h1>
+                    </div>
+                    <button class="btn btn-ghost" onclick="loadJourneys(true)" title="Forcer le rafraîchissement (ignore le cache)">
+                        <i class="fas fa-sync-alt"></i>
+                        Actualiser
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-card orange">
+                    <div class="stat-icon"><i class="fas fa-route"></i></div>
+                    <div class="stat-value" id="statTotal">0</div>
+                    <div class="stat-label">Journeys chargées</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-icon"><i class="fas fa-check"></i></div>
+                    <div class="stat-value" id="statSelected">0</div>
+                    <div class="stat-label">Sélectionnées</div>
+                </div>
+                <div class="stat-card yellow">
+                    <div class="stat-icon"><i class="fas fa-play"></i></div>
+                    <div class="stat-value" id="statRunning">0</div>
+                    <div class="stat-label">En cours</div>
+                </div>
+                <div class="stat-card red">
+                    <div class="stat-icon"><i class="fas fa-pencil"></i></div>
+                    <div class="stat-value" id="statDraft">0</div>
+                    <div class="stat-label">Brouillons</div>
+                </div>
+            </div>
+
+            <!-- Journey List -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-list"></i>
+                        <span id="listTitle">Journeys Welcome</span>
+                    </div>
+                </div>
+
+                <div class="selection-bar">
+                    <div class="selection-left">
+                        <label class="checkbox-wrap" onclick="toggleAll()">
+                            <div class="checkbox" id="checkAll">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span>Tout sélectionner</span>
+                        </label>
+                        <span class="selection-count">
+                            <strong id="selectedCount">0</strong> / <span id="totalCount">0</span>
+                        </span>
+                    </div>
+                    <button class="btn btn-ghost btn-sm" onclick="clearSelection()">
+                        Désélectionner
+                    </button>
+                </div>
+
+                <div class="journey-list" id="journeyList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon"><i class="fas fa-plug"></i></div>
+                        <h3>Pas encore connecté</h3>
+                        <p>Connectez-vous pour voir vos journeys</p>
+                    </div>
+                </div>
+
+                <div class="load-more-container" id="loadMoreContainer" style="display:none">
+                    <button class="btn-load-more" id="btnLoadMore" onclick="loadMoreJourneys()">
+                        <i class="fas fa-plus"></i> Charger plus
+                    </button>
+                    <div class="load-more-info" id="loadMoreInfo"></div>
+                </div>
+            </div>
+
+            <!-- Selected Panel -->
+            <div class="selected-panel" id="selectedPanel" style="display:none">
+                <div class="selected-header">
+                    <h3><i class="fas fa-check-double"></i> Sélection</h3>
+                    <span class="selected-badge" id="selectedBadge">0</span>
+                </div>
+                <div class="selected-list" id="selectedList"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-panel">
+                <div class="action-title">
+                    <i class="fas fa-bolt"></i>
+                    Actions
+                    <span class="action-hint">Sélectionnez des journeys pour commencer</span>
+                </div>
+                <div class="action-grid">
+                    <button class="action-btn scan" onclick="runScan()" id="btnScan" disabled>
+                        <i class="fas fa-search"></i>
+                        <div class="action-btn-title">Scanner</div>
+                        <div class="action-btn-desc">Voir les URLs concernées</div>
+                    </button>
+                    <button class="action-btn analyze" onclick="runAnalyze()" id="btnAnalyze" disabled>
+                        <i class="fas fa-microscope"></i>
+                        <div class="action-btn-title">Analyser</div>
+                        <div class="action-btn-desc">Prévisualiser les changements</div>
+                    </button>
+                    <button class="action-btn execute" onclick="confirmExecute()" id="btnExecute" disabled>
+                        <i class="fas fa-play"></i>
+                        <div class="action-btn-title">Exécuter</div>
+                        <div class="action-btn-desc">Appliquer les modifications</div>
+                    </button>
+                </div>
+                <div class="options-row">
+                    <label class="option-item">
+                        <input type="checkbox" id="optRefresh">
+                        <span>Rafraîchir les journeys après modification</span>
+                    </label>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal-overlay" id="resultsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Résultats</h2>
+                <button class="modal-close" onclick="closeModal('resultsModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeModal('resultsModal')">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal" style="max-width:440px">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-exclamation-triangle" style="color:var(--warning)"></i>
+                    Confirmation
+                </h2>
+                <button class="modal-close" onclick="closeModal('confirmModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom:12px">Vous allez modifier <strong id="confirmCount">0</strong> journey(s).</p>
+                <p style="color:var(--danger);font-size:0.85rem">
+                    <i class="fas fa-info-circle"></i> Cette action ne peut pas être annulée.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeModal('confirmModal')">Annuler</button>
+                <button class="btn btn-danger" onclick="runExecute()">
+                    <i class="fas fa-bolt"></i> Confirmer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+        <div class="loading-text" id="loadingText">Chargement...</div>
+    </div>
+
+    <!-- Toasts -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // State
+        let currentType = 'welcome';
+        let journeys = [];
+        let selected = new Set();
+        let connected = false;
+
+        // Pagination state
+        let currentPage = 1;
+        let pageSize = 50;
+        let totalJourneys = 0;
+        let hasMore = false;
+        let isLoading = false;
+        let fromCache = false;
+
+        // Greeting based on time
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            let greeting = 'Bonjour';
+            if (hour >= 18) greeting = 'Bonsoir';
+            else if (hour >= 12) greeting = 'Bon après-midi';
+            document.getElementById('greeting').textContent = greeting + ' !';
+        }
+        updateGreeting();
+
+        // Pattern preview
+        document.getElementById('oldPattern').addEventListener('input', updatePreview);
+        document.getElementById('newPattern').addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            document.getElementById('previewOld').textContent = document.getElementById('oldPattern').value || 'fr';
+            document.getElementById('previewNew').textContent = document.getElementById('newPattern').value || 'fr-fr';
+        }
+
+        // Connection
+        async function connect() {
+            showLoading('Connexion en cours...');
+            try {
+                const res = await fetch('/api/connect', { method: 'POST' });
+                const data = await res.json();
+                hideLoading();
+
+                if (data.success) {
+                    connected = true;
+                    document.getElementById('statusIndicator').className = 'status-indicator online';
+                    document.getElementById('statusText').textContent = 'Connecté';
+                    toast('Connexion réussie !', 'success');
+                    loadJourneys();
+                } else {
+                    toast('Erreur: ' + data.error, 'error');
+                }
+            } catch (e) {
+                hideLoading();
+                toast('Erreur de connexion', 'error');
+            }
+        }
+
+        // Journey type
+        function setType(type, el) {
+            currentType = type;
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+
+            const titles = {
+                'welcome': 'Journeys Welcome',
+                'transactional': 'Journeys Transactionnelles',
+                'all': 'Toutes les Journeys'
+            };
+            document.getElementById('listTitle').textContent = titles[type];
+
+            // Reset and reload with new type (uses cache, instant switch)
+            if (connected) loadJourneys(false);
+        }
+
+        // Load journeys (first page)
+        async function loadJourneys(forceRefresh = false) {
+            if (!connected) {
+                toast('Connectez-vous d\'abord', 'warning');
+                return;
+            }
+
+            // Reset pagination state
+            currentPage = 1;
+            journeys = [];
+            selected.clear();
+            updateSelection();
+
+            showLoading('Chargement...');
+            isLoading = true;
+
+            try {
+                const noCache = forceRefresh ? '&no_cache=true' : '';
+                const res = await fetch(`/api/journeys?type=${currentType}&page=1&page_size=${pageSize}${noCache}`);
+                const data = await res.json();
+                hideLoading();
+                isLoading = false;
+
+                if (data.success) {
+                    journeys = data.journeys;
+                    totalJourneys = data.total;
+                    hasMore = data.has_more;
+                    fromCache = data.from_cache;
+
+                    renderList();
+                    updateStats();
+                    updateLoadMoreButton();
+
+                    const cacheInfo = fromCache ? ' (cache)' : '';
+                    toast(`${data.count}/${data.total} journeys chargées${cacheInfo}`, 'success');
+                } else {
+                    toast('Erreur: ' + data.error, 'error');
+                }
+            } catch (e) {
+                hideLoading();
+                isLoading = false;
+                toast('Erreur de chargement', 'error');
+            }
+        }
+
+        // Load more journeys (next page)
+        async function loadMoreJourneys() {
+            if (!connected || isLoading || !hasMore) return;
+
+            const btn = document.getElementById('btnLoadMore');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Chargement...';
+            isLoading = true;
+
+            try {
+                const nextPage = currentPage + 1;
+                const res = await fetch(`/api/journeys?type=${currentType}&page=${nextPage}&page_size=${pageSize}`);
+                const data = await res.json();
+
+                isLoading = false;
+
+                if (data.success) {
+                    currentPage = nextPage;
+                    journeys = [...journeys, ...data.journeys];
+                    hasMore = data.has_more;
+                    fromCache = data.from_cache;
+
+                    renderList();
+                    updateStats();
+                    updateLoadMoreButton();
+
+                    toast(`+${data.count} journeys chargées`, 'success');
+                } else {
+                    toast('Erreur: ' + data.error, 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-plus"></i> Charger plus';
+                }
+            } catch (e) {
+                isLoading = false;
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-plus"></i> Charger plus';
+                toast('Erreur de chargement', 'error');
+            }
+        }
+
+        function updateLoadMoreButton() {
+            const container = document.getElementById('loadMoreContainer');
+            const btn = document.getElementById('btnLoadMore');
+            const info = document.getElementById('loadMoreInfo');
+
+            if (journeys.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+
+            container.style.display = 'block';
+
+            if (hasMore) {
+                btn.style.display = 'inline-flex';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-plus"></i> Charger plus';
+                const remaining = totalJourneys - journeys.length;
+                info.textContent = `${journeys.length} / ${totalJourneys} journeys chargées (${remaining} restantes)`;
+            } else {
+                btn.style.display = 'none';
+                const cacheIcon = fromCache ? '<span class="cache-indicator"><i class="fas fa-bolt"></i> cache</span>' : '';
+                info.innerHTML = `Toutes les ${totalJourneys} journeys sont chargées ${cacheIcon}`;
+            }
+        }
+
+        function renderList() {
+            const list = document.getElementById('journeyList');
+
+            if (journeys.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"><i class="fas fa-search"></i></div>
+                        <h3>Aucune journey</h3>
+                        <p>Aucune journey de ce type n'a été trouvée</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = journeys.map(j => `
+                <div class="journey-item ${selected.has(j.id) ? 'selected' : ''}" onclick="toggle('${j.id}')" data-id="${j.id}">
+                    <div class="journey-checkbox">
+                        <div class="checkbox ${selected.has(j.id) ? 'checked' : ''}">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="journey-info">
+                        <div class="journey-name">${esc(j.name)}</div>
+                        <div class="journey-meta">${j.type || 'Journey'}</div>
+                    </div>
+                    <span class="status-pill ${getStatusClass(j.status)}">
+                        <span class="dot"></span>
+                        ${j.status}
+                    </span>
+                </div>
+            `).join('');
+
+            document.getElementById('totalCount').textContent = journeys.length;
+            updateCheckAll();
+        }
+
+        function toggle(id) {
+            if (selected.has(id)) {
+                selected.delete(id);
+            } else {
+                selected.add(id);
+            }
+            updateSelection();
+        }
+
+        function toggleAll() {
+            if (selected.size === journeys.length) {
+                selected.clear();
+            } else {
+                journeys.forEach(j => selected.add(j.id));
+            }
+            updateSelection();
+        }
+
+        function clearSelection() {
+            selected.clear();
+            updateSelection();
+        }
+
+        function removeSelected(id) {
+            selected.delete(id);
+            updateSelection();
+        }
+
+        function updateSelection() {
+            document.querySelectorAll('.journey-item').forEach(el => {
+                const id = el.dataset.id;
+                const isSel = selected.has(id);
+                el.classList.toggle('selected', isSel);
+                el.querySelector('.checkbox').classList.toggle('checked', isSel);
+            });
+
+            document.getElementById('selectedCount').textContent = selected.size;
+            document.getElementById('statSelected').textContent = selected.size;
+
+            const hasSelection = selected.size > 0;
+            document.getElementById('btnScan').disabled = !hasSelection;
+            document.getElementById('btnAnalyze').disabled = !hasSelection;
+            document.getElementById('btnExecute').disabled = !hasSelection;
+
+            updateCheckAll();
+
+            const panel = document.getElementById('selectedPanel');
+            if (selected.size > 0) {
+                panel.style.display = 'block';
+                document.getElementById('selectedBadge').textContent = selected.size;
+
+                document.getElementById('selectedList').innerHTML = Array.from(selected).map(id => {
+                    const j = journeys.find(j => j.id === id);
+                    return `
+                        <div class="selected-item">
+                            <span>${esc(j?.name || id)}</span>
+                            <button class="remove-btn" onclick="event.stopPropagation(); removeSelected('${id}')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        function updateCheckAll() {
+            const cb = document.getElementById('checkAll');
+            if (selected.size === 0) {
+                cb.className = 'checkbox';
+                cb.innerHTML = '<i class="fas fa-check"></i>';
+            } else if (selected.size === journeys.length) {
+                cb.className = 'checkbox checked';
+                cb.innerHTML = '<i class="fas fa-check"></i>';
+            } else {
+                cb.className = 'checkbox partial';
+                cb.innerHTML = '<i class="fas fa-minus"></i>';
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').textContent = journeys.length;
+            document.getElementById('statRunning').textContent = journeys.filter(j => j.status === 'Running').length;
+            document.getElementById('statDraft').textContent = journeys.filter(j => j.status === 'Draft').length;
+
+            const badge = currentType === 'welcome' ? 'welcomeCount' : currentType === 'transactional' ? 'transacCount' : 'allCount';
+            document.getElementById(badge).textContent = journeys.length;
+        }
+
+        // Actions
+        async function runScan() {
+            if (selected.size === 0) return;
+
+            showLoading('Scan en cours...');
+            const results = [];
+
+            for (const id of selected) {
+                try {
+                    const res = await fetch('/api/scan', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            journey_id: id,
+                            old: document.getElementById('oldPattern').value,
+                            new: document.getElementById('newPattern').value
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.success) results.push(data);
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            hideLoading();
+            showScanResults(results);
+        }
+
+        async function runAnalyze() {
+            if (selected.size === 0) return;
+
+            showLoading('Analyse en cours...');
+            const results = [];
+
+            for (const id of selected) {
+                try {
+                    const res = await fetch('/api/analyze', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            journey_id: id,
+                            old: document.getElementById('oldPattern').value,
+                            new: document.getElementById('newPattern').value
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.success) results.push(data);
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            hideLoading();
+            showAnalyzeResults(results);
+        }
+
+        function confirmExecute() {
+            if (selected.size === 0) return;
+            document.getElementById('confirmCount').textContent = selected.size;
+            document.getElementById('confirmModal').classList.add('active');
+        }
+
+        async function runExecute() {
+            closeModal('confirmModal');
+            if (selected.size === 0) return;
+
+            showLoading('Modification en cours...');
+            const results = [];
+            let totalChanges = 0;
+
+            for (const id of selected) {
+                try {
+                    const res = await fetch('/api/execute', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            journey_id: id,
+                            old: document.getElementById('oldPattern').value,
+                            new: document.getElementById('newPattern').value,
+                            refresh: document.getElementById('optRefresh').checked
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        results.push(data);
+                        totalChanges += data.total_changes || 0;
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            hideLoading();
+            showExecuteResults(results, totalChanges);
+        }
+
+        // Results
+        function showScanResults(results) {
+            const allUrls = new Set();
+            let totalActivities = 0;
+
+            results.forEach(r => {
+                r.unique_urls?.forEach(u => allUrls.add(u));
+                totalActivities += r.activities?.length || 0;
+            });
+
+            document.getElementById('modalTitle').innerHTML = '<i class="fas fa-search" style="color:#0ea5e9"></i> Résultats du scan';
+            document.getElementById('modalBody').innerHTML = `
+                <div class="results-stats">
+                    <div class="result-stat">
+                        <div class="result-stat-value">${results.length}</div>
+                        <div class="result-stat-label">Journeys</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value">${totalActivities}</div>
+                        <div class="result-stat-label">Emails</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value">${allUrls.size}</div>
+                        <div class="result-stat-label">URLs uniques</div>
+                    </div>
+                </div>
+                <div class="result-section-title">
+                    <i class="fas fa-link"></i> URLs qui seront modifiées
+                </div>
+                <div>
+                    ${allUrls.size > 0 ? Array.from(allUrls).map(u => `<span class="url-tag">${esc(u)}</span>`).join('') : '<p style="color:var(--text-muted)">Aucune URL à modifier</p>'}
+                </div>
+            `;
+            document.getElementById('resultsModal').classList.add('active');
+        }
+
+        function showAnalyzeResults(results) {
+            let totalChanges = 0;
+            let totalEmails = 0;
+
+            results.forEach(r => {
+                totalChanges += r.total_changes || 0;
+                totalEmails += r.results?.length || 0;
+            });
+
+            document.getElementById('modalTitle').innerHTML = '<i class="fas fa-microscope" style="color:var(--warning)"></i> Résultats de l\'analyse';
+            document.getElementById('modalBody').innerHTML = `
+                <div class="results-stats">
+                    <div class="result-stat">
+                        <div class="result-stat-value">${results.length}</div>
+                        <div class="result-stat-label">Journeys</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value">${totalEmails}</div>
+                        <div class="result-stat-label">Emails</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value" style="color:var(--warning)">${totalChanges}</div>
+                        <div class="result-stat-label">Modifications</div>
+                    </div>
+                </div>
+                <div class="result-section-title">
+                    <i class="fas fa-list"></i> Détails par email
+                </div>
+                ${results.flatMap(r => r.results || []).map(a => `
+                    <div class="activity-result" onclick="this.classList.toggle('expanded')">
+                        <div class="activity-result-header">
+                            <span class="activity-result-name">
+                                <i class="fas fa-envelope"></i>
+                                ${esc(a.activity_name || a.name || 'Email')}
+                            </span>
+                            <span class="activity-result-badge">${(a.changes || []).length}</span>
+                        </div>
+                        <div class="activity-result-body">
+                            ${(a.changes || []).slice(0, 5).map(c => `
+                                <div class="change-line">${esc(c.context || '')}</div>
+                            `).join('')}
+                            ${(a.changes || []).length > 5 ? `<p style="color:var(--text-muted);font-size:0.75rem;margin-top:8px">+ ${a.changes.length - 5} autres</p>` : ''}
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+            document.getElementById('resultsModal').classList.add('active');
+        }
+
+        function showExecuteResults(results, totalChanges) {
+            document.getElementById('modalTitle').innerHTML = '<i class="fas fa-check-circle" style="color:var(--success)"></i> Modifications appliquées';
+            document.getElementById('modalBody').innerHTML = `
+                <div class="results-stats">
+                    <div class="result-stat" style="background:var(--success-soft)">
+                        <div class="result-stat-value" style="color:var(--success)">${totalChanges}</div>
+                        <div class="result-stat-label">Modifications</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value">${results.length}</div>
+                        <div class="result-stat-label">Journeys</div>
+                    </div>
+                </div>
+                <div class="result-section-title">
+                    <i class="fas fa-check"></i> Résumé
+                </div>
+                ${results.flatMap(r => r.results || []).map(a => `
+                    <div style="padding:10px 14px;background:var(--bg-warm);border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem">
+                        <span><i class="fas fa-envelope" style="color:var(--text-muted);margin-right:8px"></i> ${esc(a.activity_name || a.name || 'Email')}</span>
+                        <span class="activity-result-badge" style="background:var(--success)">${(a.changes || []).length}</span>
+                    </div>
+                `).join('')}
+            `;
+            document.getElementById('resultsModal').classList.add('active');
+            toast(`${totalChanges} modifications effectuées`, 'success');
+        }
+
+        // Utils
+        function showLoading(text) {
+            document.getElementById('loadingText').textContent = text;
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function toast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+
+            const icons = { success: 'fa-check-circle', error: 'fa-times-circle', warning: 'fa-exclamation-circle' };
+            t.innerHTML = `
+                <i class="fas ${icons[type]}"></i>
+                <span class="toast-message">${message}</span>
+            `;
+
+            container.appendChild(t);
+            setTimeout(() => {
+                t.style.opacity = '0';
+                t.style.transform = 'translateX(20px)';
+                setTimeout(() => t.remove(), 300);
+            }, 3500);
+        }
+
+        function esc(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getStatusClass(status) {
+            switch (status?.toLowerCase()) {
+                case 'running': return 'running';
+                case 'draft': return 'draft';
+                case 'stopped': return 'stopped';
+                default: return 'draft';
+            }
+        }
+    </script>
+</body>
+</html>

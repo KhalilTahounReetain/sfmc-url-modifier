@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SFMC URL Modifier | REETAIN</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo_reetain.svg') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -54,7 +55,7 @@
 
         /* Sidebar */
         .sidebar {
-            width: 260px;
+            width: 300px;
             background: var(--sidebar-bg);
             padding: 24px 20px;
             display: flex;
@@ -68,11 +69,12 @@
             padding-bottom: 24px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
             margin-bottom: 24px;
+            text-align: center;
         }
 
         .brand img {
-            height: 36px;
-            margin-bottom: 12px;
+            height: 64px;
+            margin-bottom: 6px;
         }
 
         .brand-title {
@@ -307,7 +309,7 @@
         /* Main */
         .main {
             flex: 1;
-            margin-left: 260px;
+            margin-left: 300px;
             padding: 32px 40px;
             max-width: 1200px;
         }
@@ -586,6 +588,480 @@
         }
 
         .cache-indicator i {
+            font-size: 0.65rem;
+        }
+
+        /* Search bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-input-wrap {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input-wrap i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 36px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            background: var(--card);
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-clear {
+            width: 24px;
+            height: 24px;
+            background: var(--border);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-soft);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+
+        .search-clear:hover {
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .search-clear.visible {
+            display: flex;
+        }
+
+        .search-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        /* Republication section */
+        .republication-panel {
+            margin-top: 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .republication-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .republication-title i {
+            color: #0ea5e9;
+        }
+
+        .republication-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .republication-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .repub-btn {
+            padding: 20px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .repub-btn:hover:not(:disabled) {
+            border-color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        .repub-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .repub-btn i {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #0ea5e9;
+        }
+
+        .repub-btn-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .repub-btn-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Emails modal */
+        .email-select-list {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .email-select-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+
+        .email-select-item:hover {
+            background: var(--bg);
+        }
+
+        .email-select-item.selected {
+            background: var(--accent-soft);
+        }
+
+        .email-select-item:last-child {
+            border-bottom: none;
+        }
+
+        .email-checkbox {
+            margin-right: 14px;
+        }
+
+        .email-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .email-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .email-journey {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .email-select-header {
+            padding: 12px 16px;
+            background: var(--bg-warm);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .email-select-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Full URL replacement collapsible */
+        .url-replace-section {
+            margin-top: 16px;
+        }
+
+        .url-replace-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .url-replace-header:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .url-replace-header i.icon {
+            color: #0ea5e9;
+            font-size: 0.85rem;
+        }
+
+        .url-replace-header span {
+            flex: 1;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .url-replace-header i.chevron {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+
+        .url-replace-section.expanded .url-replace-header i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .url-replace-body {
+            display: none;
+            padding: 12px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            margin-top: -4px;
+        }
+
+        .url-replace-section.expanded .url-replace-body {
+            display: block;
+        }
+
+        .url-replace-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .url-replace-row:last-of-type {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .url-replace-input {
+            width: 100%;
+            padding: 8px 10px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .url-replace-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+        }
+
+        .url-replace-input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .url-replace-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .url-replace-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn-add-url {
+            flex: 1;
+            padding: 8px;
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px dashed rgba(14, 165, 233, 0.4);
+            border-radius: 6px;
+            color: #0ea5e9;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-add-url:hover {
+            background: rgba(14, 165, 233, 0.3);
+            border-color: #0ea5e9;
+        }
+
+        .btn-remove-url {
+            width: 24px;
+            height: 24px;
+            background: rgba(220, 38, 38, 0.2);
+            border: none;
+            border-radius: 4px;
+            color: #fca5a5;
+            font-size: 0.65rem;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-bottom: 4px;
+        }
+
+        .btn-remove-url:hover {
+            background: rgba(220, 38, 38, 0.4);
+            color: #fff;
+        }
+
+        .url-replace-count {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 4px;
+        }
+
+        /* Auto-detect toggle */
+        .auto-detect-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #374151;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--accent);
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .toggle-label {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .auto-detect-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px 12px;
+            background: rgba(234, 88, 12, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        .auto-detect-info i {
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .manual-pattern {
+            margin-top: 12px;
+        }
+
+        /* Country badge */
+        .country-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .country-badge.unknown {
+            background: #6b7280;
+        }
+
+        .pattern-badge {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .journey-patterns {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .journey-patterns .pattern-text {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .journey-patterns .pattern-arrow {
+            color: var(--success);
             font-size: 0.65rem;
         }
 
@@ -1168,7 +1644,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="brand">
-                <img src="{{ url_for('static', filename='images/logoREETAIN.png') }}" alt="REETAIN">
+                <img src="{{ url_for('static', filename='images/logo_reetain.svg') }}" alt="REETAIN">
                 <div class="brand-title">SFMC URL Modifier</div>
                 <div class="brand-subtitle">by Khalil</div>
             </div>
@@ -1208,10 +1684,24 @@
 
             <div class="config-box">
                 <div class="config-title">
-                    <i class="fas fa-exchange-alt"></i>
+                    <i class="fas fa-magic"></i>
                     Remplacement URL
                 </div>
-                <div class="pattern-row">
+
+                <div class="auto-detect-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="autoDetect" checked onchange="toggleAutoDetect()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label">Auto-détection pays</span>
+                </div>
+
+                <div class="auto-detect-info" id="autoDetectInfo">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Le pattern est détecté depuis le nom de la journey (FR, ES, DE...)</span>
+                </div>
+
+                <div class="pattern-row manual-pattern" id="manualPattern" style="display:none">
                     <div class="pattern-field">
                         <label>Chercher</label>
                         <input type="text" id="oldPattern" value="fr" placeholder="fr">
@@ -1222,10 +1712,36 @@
                         <input type="text" id="newPattern" value="fr-fr" placeholder="fr-fr">
                     </div>
                 </div>
-                <div class="pattern-preview">
+                <div class="pattern-preview manual-pattern" id="manualPreview" style="display:none">
                     <span class="old">/<span id="previewOld">fr</span>/</span>
                     <span class="arrow">→</span>
                     <span class="new">/<span id="previewNew">fr-fr</span>/</span>
+                </div>
+
+                <!-- Full URL Replacement -->
+                <div class="url-replace-section" id="urlReplaceSection">
+                    <div class="url-replace-header" onclick="toggleUrlReplace()">
+                        <i class="fas fa-link icon"></i>
+                        <span>Remplacement URL complet</span>
+                        <i class="fas fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="url-replace-body">
+                        <div id="urlReplaceList">
+                            <div class="url-replace-row" data-index="0">
+                                <span class="url-replace-label">URL à remplacer</span>
+                                <input type="text" class="url-replace-input" placeholder="https://www.sezane.com/fr" data-field="old" oninput="updateUrlReplace()">
+                                <span class="url-replace-label">Remplacer par</span>
+                                <div style="display:flex;gap:6px">
+                                    <input type="text" class="url-replace-input" placeholder="https://www.sezane.com/fr-fr" data-field="new" oninput="updateUrlReplace()" style="flex:1">
+                                    <button class="btn-remove-url" onclick="removeUrlRow(0)" title="Supprimer"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-add-url" onclick="addUrlRow()">
+                            <i class="fas fa-plus"></i> Ajouter un remplacement
+                        </button>
+                        <div class="url-replace-count" id="urlReplaceCount">0 remplacement(s) configuré(s)</div>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -1276,6 +1792,15 @@
                         <i class="fas fa-list"></i>
                         <span id="listTitle">Journeys Welcome</span>
                     </div>
+                </div>
+
+                <div class="search-bar">
+                    <div class="search-input-wrap">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une journey..." oninput="filterJourneys()">
+                    </div>
+                    <button class="search-clear" id="searchClear" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+                    <span class="search-count" id="searchCount"></span>
                 </div>
 
                 <div class="selection-bar">
@@ -1351,6 +1876,29 @@
                     </label>
                 </div>
             </div>
+
+            <!-- Republication -->
+            <div class="republication-panel">
+                <div class="republication-title">
+                    <i class="fas fa-sync-alt"></i>
+                    Republication
+                </div>
+                <div class="republication-desc">
+                    Rafraîchir les emails modifiés dans Content Builder pour mettre à jour les journeys
+                </div>
+                <div class="republication-grid">
+                    <button class="repub-btn" onclick="refreshAllEmails()" id="btnRefreshAll" disabled>
+                        <i class="fas fa-redo"></i>
+                        <div class="repub-btn-title">Rafraîchir tout</div>
+                        <div class="repub-btn-desc">Republier toutes les journeys sélectionnées</div>
+                    </button>
+                    <button class="repub-btn" onclick="showEmailsModal()" id="btnSelectEmails" disabled>
+                        <i class="fas fa-envelope-open-text"></i>
+                        <div class="repub-btn-title">Sélectionner les emails</div>
+                        <div class="repub-btn-desc">Choisir les emails à rafraîchir</div>
+                    </button>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -1393,6 +1941,44 @@
         </div>
     </div>
 
+    <!-- Emails Selection Modal -->
+    <div class="modal-overlay" id="emailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-envelope" style="color:#0ea5e9"></i>
+                    Sélection des emails
+                </h2>
+                <button class="modal-close" onclick="closeModal('emailsModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:0">
+                <div class="email-select-header">
+                    <label class="checkbox-wrap" onclick="toggleAllEmails()">
+                        <div class="checkbox" id="checkAllEmails">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Tout sélectionner (<span id="emailSelectedCount">0</span>/<span id="emailTotalCount">0</span>)</span>
+                    </label>
+                    <div class="email-select-actions">
+                        <button class="btn btn-ghost btn-sm" onclick="clearEmailSelection()">Désélectionner</button>
+                    </div>
+                </div>
+                <div class="email-select-list" id="emailSelectList">
+                    <div class="empty-state" style="padding:40px">
+                        <div class="empty-state-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                        <h3>Chargement...</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeModal('emailsModal')">Annuler</button>
+                <button class="btn btn-primary" onclick="refreshSelectedEmails()" id="btnRefreshSelected" disabled>
+                    <i class="fas fa-sync-alt"></i> Rafraîchir la sélection
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Loading -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loader"></div>
@@ -1406,6 +1992,7 @@
         // State
         let currentType = 'welcome';
         let journeys = [];
+        let filteredJourneys = [];
         let selected = new Set();
         let connected = false;
 
@@ -1416,6 +2003,17 @@
         let hasMore = false;
         let isLoading = false;
         let fromCache = false;
+        let autoDetectEnabled = true;
+
+        // Search state
+        let searchQuery = '';
+
+        // Emails selection state
+        let allEmails = [];
+        let selectedEmails = new Set();
+
+        // Full URL replacements
+        let urlReplacements = [{ old: '', new: '' }];
 
         // Greeting based on time
         function updateGreeting() {
@@ -1434,6 +2032,105 @@
         function updatePreview() {
             document.getElementById('previewOld').textContent = document.getElementById('oldPattern').value || 'fr';
             document.getElementById('previewNew').textContent = document.getElementById('newPattern').value || 'fr-fr';
+        }
+
+        function toggleAutoDetect() {
+            autoDetectEnabled = document.getElementById('autoDetect').checked;
+            document.getElementById('autoDetectInfo').style.display = autoDetectEnabled ? 'flex' : 'none';
+            document.getElementById('manualPattern').style.display = autoDetectEnabled ? 'none' : 'block';
+            document.getElementById('manualPreview').style.display = autoDetectEnabled ? 'none' : 'flex';
+            renderList();
+        }
+
+        // Search functions
+        function filterJourneys() {
+            searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+            applyFilter();
+            renderList();
+            updateSearchCount();
+        }
+
+        function applyFilter() {
+            if (!searchQuery) {
+                filteredJourneys = [...journeys];
+            } else {
+                filteredJourneys = journeys.filter(j =>
+                    j.name.toLowerCase().includes(searchQuery) ||
+                    (j.country && j.country.toLowerCase().includes(searchQuery)) ||
+                    (j.status && j.status.toLowerCase().includes(searchQuery))
+                );
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+            applyFilter();
+            renderList();
+            updateSearchCount();
+        }
+
+        function updateSearchCount() {
+            const countEl = document.getElementById('searchCount');
+            const clearBtn = document.getElementById('searchClear');
+            if (searchQuery) {
+                countEl.textContent = `${filteredJourneys.length} résultat(s)`;
+                clearBtn.classList.add('visible');
+            } else {
+                countEl.textContent = '';
+                clearBtn.classList.remove('visible');
+            }
+        }
+
+        // Full URL replacement functions
+        function toggleUrlReplace() {
+            document.getElementById('urlReplaceSection').classList.toggle('expanded');
+        }
+
+        function addUrlRow() {
+            urlReplacements.push({ old: '', new: '' });
+            renderUrlReplaceList();
+        }
+
+        function removeUrlRow(index) {
+            if (urlReplacements.length > 1) {
+                urlReplacements.splice(index, 1);
+                renderUrlReplaceList();
+            }
+        }
+
+        function renderUrlReplaceList() {
+            const list = document.getElementById('urlReplaceList');
+            list.innerHTML = urlReplacements.map((item, index) => `
+                <div class="url-replace-row" data-index="${index}">
+                    <span class="url-replace-label">URL à remplacer</span>
+                    <input type="text" class="url-replace-input" placeholder="https://www.sezane.com/fr"
+                           data-field="old" value="${esc(item.old)}" oninput="updateUrlReplaceValue(${index}, 'old', this.value)">
+                    <span class="url-replace-label">Remplacer par</span>
+                    <div style="display:flex;gap:6px">
+                        <input type="text" class="url-replace-input" placeholder="https://www.sezane.com/fr-fr"
+                               data-field="new" value="${esc(item.new)}" oninput="updateUrlReplaceValue(${index}, 'new', this.value)" style="flex:1">
+                        <button class="btn-remove-url" onclick="removeUrlRow(${index})" title="Supprimer" ${urlReplacements.length === 1 ? 'style="opacity:0.3;cursor:not-allowed"' : ''}>
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            updateUrlReplaceCount();
+        }
+
+        function updateUrlReplaceValue(index, field, value) {
+            urlReplacements[index][field] = value;
+            updateUrlReplaceCount();
+        }
+
+        function updateUrlReplaceCount() {
+            const configured = urlReplacements.filter(r => r.old && r.new).length;
+            document.getElementById('urlReplaceCount').textContent = `${configured} remplacement(s) configuré(s)`;
+        }
+
+        function getUrlReplacements() {
+            return urlReplacements.filter(r => r.old && r.new);
         }
 
         // Connection
@@ -1472,6 +2169,10 @@
             };
             document.getElementById('listTitle').textContent = titles[type];
 
+            // Clear search when changing type
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+
             // Reset and reload with new type (uses cache, instant switch)
             if (connected) loadJourneys(false);
         }
@@ -1501,6 +2202,7 @@
 
                 if (data.success) {
                     journeys = data.journeys;
+                    filteredJourneys = [...journeys];
                     totalJourneys = data.total;
                     hasMore = data.has_more;
                     fromCache = data.from_cache;
@@ -1508,6 +2210,7 @@
                     renderList();
                     updateStats();
                     updateLoadMoreButton();
+                    updateSearchCount();
 
                     const cacheInfo = fromCache ? ' (cache)' : '';
                     toast(`${data.count}/${data.total} journeys chargées${cacheInfo}`, 'success');
@@ -1543,9 +2246,11 @@
                     hasMore = data.has_more;
                     fromCache = data.from_cache;
 
+                    applyFilter();
                     renderList();
                     updateStats();
                     updateLoadMoreButton();
+                    updateSearchCount();
 
                     toast(`+${data.count} journeys chargées`, 'success');
                 } else {
@@ -1589,18 +2294,37 @@
         function renderList() {
             const list = document.getElementById('journeyList');
 
-            if (journeys.length === 0) {
+            // Apply filter first
+            applyFilter();
+
+            if (filteredJourneys.length === 0) {
+                const emptyMsg = searchQuery
+                    ? `Aucune journey ne correspond à "${searchQuery}"`
+                    : 'Aucune journey de ce type n\'a été trouvée';
                 list.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon"><i class="fas fa-search"></i></div>
                         <h3>Aucune journey</h3>
-                        <p>Aucune journey de ce type n'a été trouvée</p>
+                        <p>${emptyMsg}</p>
                     </div>
                 `;
                 return;
             }
 
-            list.innerHTML = journeys.map(j => `
+            list.innerHTML = filteredJourneys.map(j => {
+                const countryBadge = autoDetectEnabled && j.country
+                    ? `<span class="country-badge">${j.country}</span>`
+                    : (autoDetectEnabled && !j.country ? `<span class="country-badge unknown">?</span>` : '');
+
+                const patternsInfo = autoDetectEnabled && j.patterns
+                    ? `<div class="journey-patterns">
+                         <span class="pattern-text">/${j.patterns[0]}/</span>
+                         <i class="fas fa-arrow-right pattern-arrow"></i>
+                         <span class="pattern-text">/${j.patterns[1]}/</span>
+                       </div>`
+                    : '';
+
+                return `
                 <div class="journey-item ${selected.has(j.id) ? 'selected' : ''}" onclick="toggle('${j.id}')" data-id="${j.id}">
                     <div class="journey-checkbox">
                         <div class="checkbox ${selected.has(j.id) ? 'checked' : ''}">
@@ -1608,17 +2332,17 @@
                         </div>
                     </div>
                     <div class="journey-info">
-                        <div class="journey-name">${esc(j.name)}</div>
-                        <div class="journey-meta">${j.type || 'Journey'}</div>
+                        <div class="journey-name">${esc(j.name)}${countryBadge}</div>
+                        <div class="journey-meta">${j.type || 'Journey'}${patternsInfo}</div>
                     </div>
                     <span class="status-pill ${getStatusClass(j.status)}">
                         <span class="dot"></span>
                         ${j.status}
                     </span>
                 </div>
-            `).join('');
+            `}).join('');
 
-            document.getElementById('totalCount').textContent = journeys.length;
+            document.getElementById('totalCount').textContent = filteredJourneys.length;
             updateCheckAll();
         }
 
@@ -1632,10 +2356,13 @@
         }
 
         function toggleAll() {
-            if (selected.size === journeys.length) {
-                selected.clear();
+            const currentFiltered = filteredJourneys.map(j => j.id);
+            const allFilteredSelected = currentFiltered.every(id => selected.has(id));
+
+            if (allFilteredSelected) {
+                currentFiltered.forEach(id => selected.delete(id));
             } else {
-                journeys.forEach(j => selected.add(j.id));
+                currentFiltered.forEach(id => selected.add(id));
             }
             updateSelection();
         }
@@ -1665,6 +2392,8 @@
             document.getElementById('btnScan').disabled = !hasSelection;
             document.getElementById('btnAnalyze').disabled = !hasSelection;
             document.getElementById('btnExecute').disabled = !hasSelection;
+            document.getElementById('btnRefreshAll').disabled = !hasSelection;
+            document.getElementById('btnSelectEmails').disabled = !hasSelection;
 
             updateCheckAll();
 
@@ -1691,10 +2420,13 @@
 
         function updateCheckAll() {
             const cb = document.getElementById('checkAll');
-            if (selected.size === 0) {
+            const filteredIds = filteredJourneys.map(j => j.id);
+            const selectedInFiltered = filteredIds.filter(id => selected.has(id)).length;
+
+            if (selectedInFiltered === 0) {
                 cb.className = 'checkbox';
                 cb.innerHTML = '<i class="fas fa-check"></i>';
-            } else if (selected.size === journeys.length) {
+            } else if (selectedInFiltered === filteredJourneys.length) {
                 cb.className = 'checkbox checked';
                 cb.innerHTML = '<i class="fas fa-check"></i>';
             } else {
@@ -1704,12 +2436,20 @@
         }
 
         function updateStats() {
-            document.getElementById('statTotal').textContent = journeys.length;
-            document.getElementById('statRunning').textContent = journeys.filter(j => j.status === 'Running').length;
-            document.getElementById('statDraft').textContent = journeys.filter(j => j.status === 'Draft').length;
+            const total = journeys.length;
+            const running = journeys.filter(j => j.status === 'Running').length;
+            const draft = journeys.filter(j => j.status === 'Draft').length;
 
-            const badge = currentType === 'welcome' ? 'welcomeCount' : currentType === 'transactional' ? 'transacCount' : 'allCount';
-            document.getElementById(badge).textContent = journeys.length;
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statRunning').textContent = running;
+            document.getElementById('statDraft').textContent = draft;
+
+            const badges = {
+                'welcome': 'welcomeCount',
+                'transactional': 'transacCount',
+                'all': 'allCount'
+            };
+            document.getElementById(badges[currentType]).textContent = total;
         }
 
         // Actions
@@ -1721,14 +2461,20 @@
 
             for (const id of selected) {
                 try {
+                    const payload = {
+                        journey_id: id,
+                        auto_detect: autoDetectEnabled,
+                        url_replacements: getUrlReplacements()
+                    };
+                    if (!autoDetectEnabled) {
+                        payload.old = document.getElementById('oldPattern').value;
+                        payload.new = document.getElementById('newPattern').value;
+                    }
+
                     const res = await fetch('/api/scan', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            journey_id: id,
-                            old: document.getElementById('oldPattern').value,
-                            new: document.getElementById('newPattern').value
-                        })
+                        body: JSON.stringify(payload)
                     });
                     const data = await res.json();
                     if (data.success) results.push(data);
@@ -1749,14 +2495,20 @@
 
             for (const id of selected) {
                 try {
+                    const payload = {
+                        journey_id: id,
+                        auto_detect: autoDetectEnabled,
+                        url_replacements: getUrlReplacements()
+                    };
+                    if (!autoDetectEnabled) {
+                        payload.old = document.getElementById('oldPattern').value;
+                        payload.new = document.getElementById('newPattern').value;
+                    }
+
                     const res = await fetch('/api/analyze', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            journey_id: id,
-                            old: document.getElementById('oldPattern').value,
-                            new: document.getElementById('newPattern').value
-                        })
+                        body: JSON.stringify(payload)
                     });
                     const data = await res.json();
                     if (data.success) results.push(data);
@@ -1785,15 +2537,21 @@
 
             for (const id of selected) {
                 try {
+                    const payload = {
+                        journey_id: id,
+                        auto_detect: autoDetectEnabled,
+                        refresh: document.getElementById('optRefresh').checked,
+                        url_replacements: getUrlReplacements()
+                    };
+                    if (!autoDetectEnabled) {
+                        payload.old = document.getElementById('oldPattern').value;
+                        payload.new = document.getElementById('newPattern').value;
+                    }
+
                     const res = await fetch('/api/execute', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            journey_id: id,
-                            old: document.getElementById('oldPattern').value,
-                            new: document.getElementById('newPattern').value,
-                            refresh: document.getElementById('optRefresh').checked
-                        })
+                        body: JSON.stringify(payload)
                     });
                     const data = await res.json();
                     if (data.success) {
@@ -1819,6 +2577,21 @@
                 totalActivities += r.activities?.length || 0;
             });
 
+            // Patterns par journey
+            const patternsHtml = results.map(r => {
+                const j = r.journey || {};
+                const country = j.country_detected;
+                const badge = country ? `<span class="country-badge">${country}</span>` : '';
+                const pattern = j.old_pattern && j.new_pattern
+                    ? `<span style="font-family:monospace;font-size:0.75rem;color:var(--text-muted)">/${j.old_pattern}/ → /${j.new_pattern}/</span>`
+                    : '';
+                return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg-warm);border-radius:6px;margin-bottom:4px">
+                    <span style="flex:1;font-size:0.85rem">${esc(j.name)}</span>
+                    ${badge}
+                    ${pattern}
+                </div>`;
+            }).join('');
+
             document.getElementById('modalTitle').innerHTML = '<i class="fas fa-search" style="color:#0ea5e9"></i> Résultats du scan';
             document.getElementById('modalBody').innerHTML = `
                 <div class="results-stats">
@@ -1836,6 +2609,10 @@
                     </div>
                 </div>
                 <div class="result-section-title">
+                    <i class="fas fa-globe"></i> Patterns détectés par journey
+                </div>
+                ${patternsHtml}
+                <div class="result-section-title" style="margin-top:16px">
                     <i class="fas fa-link"></i> URLs qui seront modifiées
                 </div>
                 <div>
@@ -1854,6 +2631,22 @@
                 totalEmails += r.results?.length || 0;
             });
 
+            // Patterns par journey
+            const patternsHtml = results.map(r => {
+                const j = r.journey || {};
+                const country = j.country_detected;
+                const badge = country ? `<span class="country-badge">${country}</span>` : '';
+                const pattern = j.old_pattern && j.new_pattern
+                    ? `<span style="font-family:monospace;font-size:0.75rem;color:var(--text-muted)">/${j.old_pattern}/ → /${j.new_pattern}/</span>`
+                    : '';
+                return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg-warm);border-radius:6px;margin-bottom:4px">
+                    <span style="flex:1;font-size:0.85rem">${esc(j.name)}</span>
+                    ${badge}
+                    ${pattern}
+                    <span class="activity-result-badge">${r.total_changes || 0}</span>
+                </div>`;
+            }).join('');
+
             document.getElementById('modalTitle').innerHTML = '<i class="fas fa-microscope" style="color:var(--warning)"></i> Résultats de l\'analyse';
             document.getElementById('modalBody').innerHTML = `
                 <div class="results-stats">
@@ -1871,6 +2664,10 @@
                     </div>
                 </div>
                 <div class="result-section-title">
+                    <i class="fas fa-globe"></i> Patterns détectés par journey
+                </div>
+                ${patternsHtml}
+                <div class="result-section-title" style="margin-top:16px">
                     <i class="fas fa-list"></i> Détails par email
                 </div>
                 ${results.flatMap(r => r.results || []).map(a => `
@@ -1895,6 +2692,21 @@
         }
 
         function showExecuteResults(results, totalChanges) {
+            // Patterns par journey
+            const patternsHtml = results.map(r => {
+                const country = r.country_detected;
+                const badge = country ? `<span class="country-badge">${country}</span>` : '';
+                const pattern = r.old_pattern && r.new_pattern
+                    ? `<span style="font-family:monospace;font-size:0.75rem;color:var(--text-muted)">/${r.old_pattern}/ → /${r.new_pattern}/</span>`
+                    : '';
+                return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg-warm);border-radius:6px;margin-bottom:4px">
+                    <span style="flex:1;font-size:0.85rem">${esc(r.journey_name || 'Journey')}</span>
+                    ${badge}
+                    ${pattern}
+                    <span class="activity-result-badge" style="background:var(--success)">${r.total_changes || 0}</span>
+                </div>`;
+            }).join('');
+
             document.getElementById('modalTitle').innerHTML = '<i class="fas fa-check-circle" style="color:var(--success)"></i> Modifications appliquées';
             document.getElementById('modalBody').innerHTML = `
                 <div class="results-stats">
@@ -1908,14 +2720,9 @@
                     </div>
                 </div>
                 <div class="result-section-title">
-                    <i class="fas fa-check"></i> Résumé
+                    <i class="fas fa-globe"></i> Résumé par journey
                 </div>
-                ${results.flatMap(r => r.results || []).map(a => `
-                    <div style="padding:10px 14px;background:var(--bg-warm);border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:0.85rem">
-                        <span><i class="fas fa-envelope" style="color:var(--text-muted);margin-right:8px"></i> ${esc(a.activity_name || a.name || 'Email')}</span>
-                        <span class="activity-result-badge" style="background:var(--success)">${(a.changes || []).length}</span>
-                    </div>
-                `).join('')}
+                ${patternsHtml}
             `;
             document.getElementById('resultsModal').classList.add('active');
             toast(`${totalChanges} modifications effectuées`, 'success');
@@ -1967,6 +2774,236 @@
                 case 'draft': return 'draft';
                 case 'stopped': return 'stopped';
                 default: return 'draft';
+            }
+        }
+
+        // Republication functions
+        async function refreshAllEmails() {
+            if (selected.size === 0) return;
+
+            showLoading('Republication en cours...');
+            const results = [];
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (const id of selected) {
+                try {
+                    const res = await fetch('/api/refresh', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ journey_id: id })
+                    });
+                    const data = await res.json();
+                    results.push(data);
+                    if (data.success) successCount++;
+                    else errorCount++;
+                } catch (e) {
+                    errorCount++;
+                    console.error(e);
+                }
+            }
+
+            hideLoading();
+            showRefreshResults(results, successCount, errorCount);
+        }
+
+        async function showEmailsModal() {
+            if (selected.size === 0) return;
+
+            document.getElementById('emailsModal').classList.add('active');
+            document.getElementById('emailSelectList').innerHTML = `
+                <div class="empty-state" style="padding:40px">
+                    <div class="empty-state-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                    <h3>Chargement des emails...</h3>
+                </div>
+            `;
+
+            allEmails = [];
+            selectedEmails.clear();
+
+            for (const journeyId of selected) {
+                try {
+                    const res = await fetch('/api/journey-emails', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ journey_id: journeyId })
+                    });
+                    const data = await res.json();
+                    if (data.success && data.emails) {
+                        const journey = journeys.find(j => j.id === journeyId);
+                        data.emails.forEach(email => {
+                            allEmails.push({
+                                ...email,
+                                journey_id: journeyId,
+                                journey_name: journey?.name || 'Journey'
+                            });
+                        });
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            renderEmailList();
+        }
+
+        function renderEmailList() {
+            const list = document.getElementById('emailSelectList');
+
+            if (allEmails.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state" style="padding:40px">
+                        <div class="empty-state-icon"><i class="fas fa-inbox"></i></div>
+                        <h3>Aucun email</h3>
+                        <p>Aucun email trouvé dans les journeys sélectionnées</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = allEmails.map((email, index) => `
+                <div class="email-select-item ${selectedEmails.has(index) ? 'selected' : ''}" onclick="toggleEmail(${index})" data-index="${index}">
+                    <div class="email-checkbox">
+                        <div class="checkbox ${selectedEmails.has(index) ? 'checked' : ''}">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="email-info">
+                        <div class="email-name">${esc(email.name || email.activity_name || 'Email')}</div>
+                        <div class="email-journey"><i class="fas fa-route"></i> ${esc(email.journey_name)}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            updateEmailCounts();
+        }
+
+        function toggleEmail(index) {
+            if (selectedEmails.has(index)) {
+                selectedEmails.delete(index);
+            } else {
+                selectedEmails.add(index);
+            }
+            updateEmailSelection();
+        }
+
+        function toggleAllEmails() {
+            if (selectedEmails.size === allEmails.length) {
+                selectedEmails.clear();
+            } else {
+                allEmails.forEach((_, index) => selectedEmails.add(index));
+            }
+            updateEmailSelection();
+        }
+
+        function clearEmailSelection() {
+            selectedEmails.clear();
+            updateEmailSelection();
+        }
+
+        function updateEmailSelection() {
+            document.querySelectorAll('.email-select-item').forEach(el => {
+                const index = parseInt(el.dataset.index);
+                const isSel = selectedEmails.has(index);
+                el.classList.toggle('selected', isSel);
+                el.querySelector('.checkbox').classList.toggle('checked', isSel);
+            });
+
+            updateEmailCounts();
+
+            const cb = document.getElementById('checkAllEmails');
+            if (selectedEmails.size === 0) {
+                cb.className = 'checkbox';
+            } else if (selectedEmails.size === allEmails.length) {
+                cb.className = 'checkbox checked';
+            } else {
+                cb.className = 'checkbox partial';
+                cb.innerHTML = '<i class="fas fa-minus"></i>';
+            }
+
+            document.getElementById('btnRefreshSelected').disabled = selectedEmails.size === 0;
+        }
+
+        function updateEmailCounts() {
+            document.getElementById('emailSelectedCount').textContent = selectedEmails.size;
+            document.getElementById('emailTotalCount').textContent = allEmails.length;
+        }
+
+        async function refreshSelectedEmails() {
+            if (selectedEmails.size === 0) return;
+
+            closeModal('emailsModal');
+            showLoading('Republication des emails sélectionnés...');
+
+            const journeysToRefresh = new Set();
+            selectedEmails.forEach(index => {
+                const email = allEmails[index];
+                if (email) journeysToRefresh.add(email.journey_id);
+            });
+
+            const results = [];
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (const journeyId of journeysToRefresh) {
+                try {
+                    const res = await fetch('/api/refresh', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ journey_id: journeyId })
+                    });
+                    const data = await res.json();
+                    results.push(data);
+                    if (data.success) successCount++;
+                    else errorCount++;
+                } catch (e) {
+                    errorCount++;
+                    console.error(e);
+                }
+            }
+
+            hideLoading();
+            showRefreshResults(results, successCount, errorCount);
+        }
+
+        function showRefreshResults(results, successCount, errorCount) {
+            const journeyDetails = results.map(r => {
+                const statusIcon = r.success
+                    ? '<i class="fas fa-check-circle" style="color:var(--success)"></i>'
+                    : '<i class="fas fa-times-circle" style="color:var(--danger)"></i>';
+                const statusText = r.refresh_status || (r.success ? 'OK' : 'Erreur');
+                return `
+                    <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg-warm);border-radius:6px;margin-bottom:4px">
+                        ${statusIcon}
+                        <span style="flex:1;font-size:0.85rem">${esc(r.journey_name || 'Journey')}</span>
+                        <span style="font-size:0.75rem;color:var(--text-muted)">${statusText}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('modalTitle').innerHTML = '<i class="fas fa-sync-alt" style="color:#0ea5e9"></i> Résultats de la republication';
+            document.getElementById('modalBody').innerHTML = `
+                <div class="results-stats">
+                    <div class="result-stat" style="background:var(--success-soft)">
+                        <div class="result-stat-value" style="color:var(--success)">${successCount}</div>
+                        <div class="result-stat-label">Réussies</div>
+                    </div>
+                    <div class="result-stat" style="background:${errorCount > 0 ? 'var(--danger-soft)' : 'var(--bg-warm)'}">
+                        <div class="result-stat-value" style="color:${errorCount > 0 ? 'var(--danger)' : 'var(--text-muted)'}">${errorCount}</div>
+                        <div class="result-stat-label">Erreurs</div>
+                    </div>
+                </div>
+                <div class="result-section-title" style="margin-top:16px">
+                    <i class="fas fa-list"></i> Détails
+                </div>
+                ${journeyDetails}
+            `;
+            document.getElementById('resultsModal').classList.add('active');
+
+            if (errorCount === 0) {
+                toast(`${successCount} journey(s) republiée(s)`, 'success');
+            } else {
+                toast(`${successCount} réussies, ${errorCount} erreurs`, 'warning');
             }
         }
     </script>

@@ -5,7 +5,7 @@ SFMC API - Gestion journeys et emails
 import requests
 import re
 import time
-from config import REST_BASE_URL
+from config import REST_BASE_URL, extract_country_from_name, get_url_patterns_for_journey, COUNTRY_URL_MAPPINGS
 
 
 class JourneyCache:
@@ -37,8 +37,8 @@ class JourneyCache:
         return key in self._cache and (time.time() - self._timestamps[key] < self.ttl)
 
 
-# Global cache instance
-_journey_cache = JourneyCache(ttl_seconds=300)
+# Global cache instance (4 heures)
+_journey_cache = JourneyCache(ttl_seconds=14400)
 
 
 class SFMCAPI:
@@ -281,11 +281,13 @@ class SFMCAPI:
     # URL REPLACEMENT
     # =====================
 
-    def replace_urls_in_content(self, content, old_pattern, new_pattern, dry_run=True):
+    def replace_urls_in_content(self, content, old_pattern, new_pattern, dry_run=True, url_replacements=None):
         """
         Remplace URLs dans HTML et AMPscript.
         Gère: /fr/, /fr", /fr', /fr<, /fr[space], /fr)
         Ne touche pas /fr-fr/
+
+        url_replacements: liste de dict {'old': 'url_complete', 'new': 'nouvelle_url'}
         """
         if not content:
             return content, []
@@ -293,7 +295,24 @@ class SFMCAPI:
         changes = []
         new_content = content
 
-        # Patterns de remplacement
+        # 1. Remplacements d'URL complets (prioritaire)
+        if url_replacements:
+            for repl in url_replacements:
+                old_url = repl.get('old', '')
+                new_url = repl.get('new', '')
+                if old_url and new_url and old_url in content:
+                    for match in re.finditer(re.escape(old_url), content):
+                        changes.append({
+                            'original': match.group(),
+                            'replacement': new_url,
+                            'position': match.start(),
+                            'context': content[max(0, match.start()-20):match.end()+20],
+                            'type': 'full_url'
+                        })
+                    if not dry_run:
+                        new_content = new_content.replace(old_url, new_url)
+
+        # 2. Patterns de remplacement standard
         patterns = [
             (rf'/{re.escape(old_pattern)}/(?!-)', f'/{new_pattern}/'),
             (rf'/{re.escape(old_pattern)}"', f'/{new_pattern}"'),
@@ -304,15 +323,16 @@ class SFMCAPI:
         ]
 
         for pattern, replacement in patterns:
-            for match in re.finditer(pattern, content):
+            for match in re.finditer(pattern, new_content if not dry_run else content):
                 # Skip si déjà fr-fr
-                prefix = content[max(0, match.start()-3):match.start()]
+                prefix = (new_content if not dry_run else content)[max(0, match.start()-3):match.start()]
                 if f'-{old_pattern}' in prefix:
                     continue
                 changes.append({
                     'original': match.group(),
                     'position': match.start(),
-                    'context': content[max(0, match.start()-30):match.end()+30]
+                    'context': (new_content if not dry_run else content)[max(0, match.start()-30):match.end()+30],
+                    'type': 'pattern'
                 })
 
             if not dry_run:
@@ -320,7 +340,7 @@ class SFMCAPI:
 
         return new_content, changes
 
-    def process_email_asset(self, asset_id, old_pattern, new_pattern, dry_run=True):
+    def process_email_asset(self, asset_id, old_pattern, new_pattern, dry_run=True, url_replacements=None):
         """Traite un email: récupère, modifie, sauvegarde"""
         result = {'asset_id': asset_id, 'name': None, 'changes': [], 'success': False, 'error': None}
 
@@ -351,7 +371,7 @@ class SFMCAPI:
                 return result
 
             # Remplacer
-            new_content, changes = self.replace_urls_in_content(html_content, old_pattern, new_pattern, dry_run)
+            new_content, changes = self.replace_urls_in_content(html_content, old_pattern, new_pattern, dry_run, url_replacements)
             result['changes'] = changes
             result['changes_count'] = len(changes)
 
@@ -378,3 +398,62 @@ class SFMCAPI:
             result['error'] = str(e)
             print(f"  [ERREUR] {asset_id}: {e}")
             return result
+
+    def process_journey_auto(self, journey_id, dry_run=True):
+        """
+        Traite une journey avec détection automatique du pays depuis son nom.
+        Retourne les patterns utilisés et les résultats.
+        """
+        journey = self.get_journey_by_id(journey_id)
+        journey_name = journey.get('name', '')
+
+        # Détecter le pays et les patterns
+        country = extract_country_from_name(journey_name)
+        patterns = get_url_patterns_for_journey(journey_name)
+
+        result = {
+            'journey_id': journey_id,
+            'journey_name': journey_name,
+            'country_detected': country,
+            'patterns': patterns,
+            'results': [],
+            'total_changes': 0,
+            'success': False,
+            'error': None
+        }
+
+        if not patterns:
+            result['error'] = f"Pays non détecté ou non supporté dans: {journey_name}"
+            print(f"  [SKIP] {journey_name} - pays non détecté")
+            return result
+
+        old_pattern, new_pattern = patterns
+        result['old_pattern'] = old_pattern
+        result['new_pattern'] = new_pattern
+
+        print(f"  [AUTO] {journey_name} → /{old_pattern}/ → /{new_pattern}/")
+
+        # Traiter les activités email
+        activities, _ = self.get_journey_activities(journey_id)
+
+        for act in activities:
+            cfg = act.get('config_args', {})
+            asset_id = None
+
+            if 'triggeredSend' in cfg:
+                ts = cfg['triggeredSend']
+                asset_id = ts.get('emailId') or ts.get('legacyEmailId') or ts.get('assetId')
+            else:
+                for k in ['emailId', 'assetId', 'legacyEmailId', 'contentBuilderAssetId']:
+                    if cfg.get(k):
+                        asset_id = cfg[k]
+                        break
+
+            if asset_id:
+                r = self.process_email_asset(asset_id, old_pattern, new_pattern, dry_run)
+                r['activity_name'] = act.get('name')
+                result['results'].append(r)
+                result['total_changes'] += len(r.get('changes', []))
+
+        result['success'] = True
+        return result

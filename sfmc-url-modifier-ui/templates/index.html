@@ -90,6 +90,31 @@
             margin-top: 2px;
         }
 
+        /* Logout button */
+        .btn-logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .btn-logout:hover {
+            background: rgba(220, 38, 38, 0.15);
+            border-color: rgba(220, 38, 38, 0.4);
+            color: #fca5a5;
+        }
+
         /* Connection */
         .connection-box {
             background: var(--sidebar-soft);
@@ -1646,8 +1671,13 @@
             <div class="brand">
                 <img src="{{ url_for('static', filename='images/logo_reetain.svg') }}" alt="REETAIN">
                 <div class="brand-title">SFMC URL Modifier</div>
-                <div class="brand-subtitle">by Khalil</div>
+                <div class="brand-subtitle">{{ user or 'Guest' }}</div>
             </div>
+
+            <a href="{{ url_for('logout') }}" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                Déconnexion
+            </a>
 
             <div class="connection-box">
                 <div class="connection-status">

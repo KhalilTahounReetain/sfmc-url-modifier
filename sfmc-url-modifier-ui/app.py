@@ -6,8 +6,9 @@ SFMC URL Modifier - Web UI
 import os
 import sys
 import re
+from functools import wraps
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 
 # .env
 env_path = os.path.join(os.path.dirname(__file__), '.env')
@@ -24,6 +25,23 @@ from sfmc_api import SFMCAPI
 from config import extract_country_from_name, get_url_patterns_for_journey, COUNTRY_URL_MAPPINGS
 
 app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY', 'sfmc-url-modifier-secret-key-2024')
+
+# Utilisateurs autorisés
+USERS = {
+    'khalil': 'khalil'
+}
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user' not in session:
+            if request.is_json:
+                return jsonify({'success': False, 'error': 'Non authentifié'}), 401
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 # Global API instance
 api = None
@@ -47,12 +65,33 @@ def refresh_connection():
     return api
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        username = request.form.get('username', '')
+        password = request.form.get('password', '')
+        if username in USERS and USERS[username] == password:
+            session['user'] = username
+            return redirect(url_for('index'))
+        error = 'Identifiants incorrects'
+    return render_template('login.html', error=error)
+
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('login'))
+
+
 @app.route('/')
+@login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html', user=session.get('user'))
 
 
 @app.route('/api/connect', methods=['POST'])
+@login_required
 def connect():
     try:
         refresh_connection()
@@ -62,6 +101,7 @@ def connect():
 
 
 @app.route('/api/journeys', methods=['GET'])
+@login_required
 def get_journeys():
     """GET /api/journeys?type=all&page=1&page_size=50&exclude_stopped=true&no_cache=false"""
     try:
@@ -112,6 +152,7 @@ def get_journeys():
 
 
 @app.route('/api/analyze', methods=['POST'])
+@login_required
 def analyze():
     try:
         api = get_api()
@@ -172,6 +213,7 @@ def analyze():
 
 
 @app.route('/api/execute', methods=['POST'])
+@login_required
 def execute():
     try:
         api = get_api()
@@ -236,6 +278,7 @@ def execute():
 
 
 @app.route('/api/scan', methods=['POST'])
+@login_required
 def scan():
     try:
         api = get_api()
@@ -313,6 +356,7 @@ def scan():
 
 
 @app.route('/api/countries', methods=['GET'])
+@login_required
 def get_countries():
     """Retourne les mappings pays supportés"""
     return jsonify({
@@ -322,6 +366,7 @@ def get_countries():
 
 
 @app.route('/api/refresh', methods=['POST'])
+@login_required
 def refresh_journey():
     """Rafraîchit/Republie une journey"""
     try:
@@ -355,6 +400,7 @@ def refresh_journey():
 
 
 @app.route('/api/journey-emails', methods=['POST'])
+@login_required
 def get_journey_emails():
     """Récupère la liste des emails d'une journey"""
     try:
